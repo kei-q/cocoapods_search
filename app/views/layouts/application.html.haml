@@ -1,0 +1,24 @@
+!!!
+%html{ lang: "en" }
+  %head
+    %meta{ charset: "utf-8" }/
+    %meta{ content: "width=device-width, initial-scale=1.0", name: "viewport" }/
+    %link{ rel: "apple-touch-icon", href: asset_path("apple-touch-icon.png") }/
+    = display_meta_tags
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "modernizr"
+    = csrf_meta_tags
+  %body
+    .sticky
+      %nav.top-bar{ data: { topbar: '' } }
+        %section.top-bar-section
+          %ul.left
+            %li
+              = link_to 'CocoaPods Search', root_path
+    .row
+      .large-9.columns
+        %p#notice= notice
+        %h1= title
+        = yield
+      .large-3.columns
+    = javascript_include_tag "application"
