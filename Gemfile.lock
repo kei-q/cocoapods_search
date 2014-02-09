@@ -27,9 +27,12 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.5)
     arel (5.0.0)
     atomic (1.1.14)
     builder (3.2.2)
+    cocoapods (0.5.1)
+      xcodeproj (~> 0.1.0)
     coderay (1.0.9)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -51,6 +54,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
@@ -84,6 +89,9 @@ GEM
     minitest (5.2.2)
     modernizr-rails (2.7.1)
     multi_json (1.8.4)
+    multipart-post (2.0.0)
+    octokit (2.7.1)
+      sawyer (~> 0.5.2)
     pg (0.15.1)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -145,6 +153,9 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    sawyer (0.5.3)
+      addressable (~> 2.3.5)
+      faraday (~> 0.8, < 0.10)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
@@ -179,12 +190,14 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    xcodeproj (0.1.0)
     yard (0.8.6.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  cocoapods
   coffee-rails (~> 4.0.0)
   dotenv-rails
   execjs
@@ -196,6 +209,7 @@ DEPENDENCIES
   jquery-rails
   meta-tags
   modernizr-rails
+  octokit
   pg
   pry-doc
   pry-nav

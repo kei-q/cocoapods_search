@@ -49,6 +49,9 @@ gem 'modernizr-rails'
 
 gem 'meta-tags', require: 'meta_tags'
 
+gem 'cocoapods'
+gem 'octokit'
+
 group :development, :test do
   gem 'thin'
   gem 'pry-rails'
