@@ -1,3 +1,4 @@
+PodLibrary.prepare
 sets = PodLibrary.sets
 specs = []
 sets.each do |set|
