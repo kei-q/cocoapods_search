@@ -52,16 +52,13 @@
                 %i.fi-monitor
                 Developer
               .large-4.columns
-                %a
                 %i.fi-home
                   = link_to "Website", pod.homepage
               .large-4.columns
-                %a
                 %i.fi-book
                   = link_to "Documentation", pod.documentation_url
               .large-4.columns
                 - if pod.social_media_url.present?
-                  %a
                   %i.fi-social-github
                   = link_to "Social Media", pod.social_media_url
 
