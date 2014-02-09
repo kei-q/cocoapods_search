@@ -21,13 +21,15 @@ end
 # end
 
 specs.each do |spec|
-  pod = PodLibrary.new
-  [:name, :summary, :description, :homepage, :social_media_url, :documentation_url].each do |attr|
+  puts "Checking #{spec.name}"
+  pod = PodLibrary.where(name: spec.name).first_or_initialize
+  [:summary, :description, :homepage, :social_media_url, :documentation_url].each do |attr|
     pod.send("#{attr}=", spec.send(attr))
   end
   pod.current_version = spec.version.to_s
   if spec.github?
-    pod.git_sourcce = spec.git_repo
+    pod.git_source = spec.git_repo
+    pod.git_tag = spec.git_tag
   end
   pod.save!
 end
