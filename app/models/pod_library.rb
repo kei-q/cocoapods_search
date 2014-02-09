@@ -63,6 +63,20 @@ class PodLibrary < ActiveRecord::Base
     @releases ||= self.class.github_client.releases(github_repo_name)
   end
 
+  def github_tags
+    @tags ||= self.class.github_client.tags(github_repo_name)
+  end
+
+  def github_current_release_commit_sha
+    return nil unless github_raw_data[:tags]
+    tag = github_raw_data[:tags].find { |tag| tag.attrs[:name] == git_tag }
+    tag ? tag.attrs[:commit].attrs[:sha] : nil
+  end
+
+  def github_current_release_commit
+    @current_release_commit ||= self.class.github_client.commit(github_repo_name, github_current_release_commit_sha)
+  end
+
   def fetch_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
     return false unless github?
 
@@ -85,10 +99,13 @@ class PodLibrary < ActiveRecord::Base
       self.github_contributor_count = github_raw_data[:contributors].size
     end
 
-    self.github_raw_data[:releases] = github_releases if update_releases
-    if github_raw_data[:releases]
-      release = github_raw_data[:releases].find { |release| release.attrs[:tag_name] == git_tag }
-      self.current_version_released_at = release.attrs[:created_at] if release
+    # self.github_raw_data[:releases] = github_releases
+    if update_releases
+      self.github_raw_data[:tags] = github_tags
+      self.github_raw_data[:current_release_commit] = github_current_release_commit
+    end
+    if github_raw_data[:current_release_commit]
+      self.current_version_released_at = github_raw_data[:current_release_commit].attrs[:commit].attrs[:committer].attrs[:date]
     end
 
     calc_score
