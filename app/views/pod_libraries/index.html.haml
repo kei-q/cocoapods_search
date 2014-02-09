@@ -2,25 +2,61 @@
 
 = paginate @pods
 
-%div
+
+
+%div.results
+%ul.results
+%li.result.row
+%div.small-12.small-centered.large-uncentered.columns
   - @pods.each do |pod|
-    %div
-      %h2= pod.name
-      %ul
-        %li= pod.current_version
-        %li= time_ago_in_words pod.current_version_released_at
-        %li= time_ago_in_words pod.first_version_released_at
-        %li= pod.summary
-        %li= pod.description
-        %li= link_to pod.homepage, pod.homepage
-        %li= link_to pod.social_media_url, pod.social_media_url
-        %li= link_to pod.documentation_url, pod.documentation_url
-        %li= time_ago_in_words pod.first_committed_at
-        %li= time_ago_in_words pod.last_committed_at
-        %li= pod.github_watcher_count
-        %li= pod.github_stargazer_count
-        %li= pod.github_fork_count
-        %li= pod.github_contributor_count
+    .info.panel
+      %i.fi-music
+      %h2
+        = pod.name
+        %span= pod.current_version
+      %p= time_ago_in_words pod.current_version_released_at
+      %p= time_ago_in_words pod.first_version_released_at
+      %p= pod.summary
+      .attribute-section
+        %h3 Basic Infomation
+        .attribute
+          %a= link_to pod.homepage, pod.homepage
+        .attribute
+          %a= link_to "amano", pod.social_media_url
+        .attribute
+          %a= link_to pod.documentation_url, pod.documentation_url
+      .attribute-section
+        %h3 Github stats
+        .attribute
+          %p= pod.github_stargazer_count
+        .attribute
+          %p= pod.github_watcher_count
+        .attribute
+          %p= pod.github_fork_count
+        .attribute
+          %p= pod.github_contributor_count
+        .attribute
+          %p= time_ago_in_words pod.first_committed_at
+        .attribute
+          %p= time_ago_in_words pod.last_committed_at
+
+
+
+        / %ul
+        /   # %li= pod.current_version
+        /   # %li= time_ago_in_words pod.current_version_released_at
+        /   # %li= time_ago_in_words pod.first_version_released_at
+        /   # %li= pod.summary
+        /   # %li= pod.description
+        /   # %li= link_to pod.homepage, pod.homepage
+        /   # %li= link_to pod.social_media_url, pod.social_media_url
+        /   # %li= link_to pod.documentation_url, pod.documentation_url
+        /   # %li= time_ago_in_words pod.first_committed_at
+        /   # %li= time_ago_in_words pod.last_committed_at
+        /   # %li= pod.github_watcher_count
+        /   # %li= pod.github_stargazer_count
+        /   # %li= pod.github_fork_count
+        /   # %li= pod.github_contributor_count
 = paginate @pods
 
 %br

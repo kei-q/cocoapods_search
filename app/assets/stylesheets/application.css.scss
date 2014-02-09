@@ -1,1 +1,17 @@
 @import 'foundation_and_overrides';
+
+    	li{
+    		list-style:none;
+    	}
+    	.results{
+    		margin-top: 20px;
+    	}
+    	.attribute-section{
+    		overflow: hidden;
+    		margin-top: 20px;
+    		padding: 0 10px;
+	    }
+		.attribute{
+	    	float: left;
+	    	margin-right: 20px;
+	    }
