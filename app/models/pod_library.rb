@@ -1,4 +1,40 @@
 class PodLibrary < ActiveRecord::Base
+  def documentation_url
+    super || "http://cocoadocs.org/docsets/#{name}/#{current_version}/"
+  end
+
+  def current_version_released_at
+    super || rand(365).days.ago
+  end
+
+  def first_version_released_at
+    super || rand(1000).days.ago
+  end
+
+  def github_watcher_count
+    super || rand(10)
+  end
+
+  def github_stargazer_count
+    super || rand(10)
+  end
+
+  def github_fork_count
+    super || rand(10)
+  end
+
+  def github_contributor_count
+    super || rand(10)
+  end
+
+  def first_committed_at
+    super || rand(1000).days.ago
+  end
+
+  def last_committed_at
+    super || rand(100).days.ago
+  end
+
   def self.sets
     @sets ||= Pod::Source.new(path).pod_sets
   end
