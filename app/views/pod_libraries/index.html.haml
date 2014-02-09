@@ -1,71 +1,72 @@
-%h1 Listing pods
 
-= paginate @pods
+.search-container
+  .row
+    .small-12.small-centered.columns
+      %input{:type=>"text"}
 
-
-
-%div.results
-%ul.results
-%li.result.row
-  %div.small-12.small-centered.large-uncentered.columns
-    - @pods.each do |pod|
-      .info.panel
-        %h2
-          = pod.name
-          %span.version= pod.current_version
-          %span.date
-            released at :
-            = time_ago_in_words pod.current_version_released_at
-            ago
-          / %span.date
-          /   First Version :
-          /   = time_ago_in_words pod.first_version_released_at
-          /   ago
-        %p= pod.summary
-
-        .attribute-section
-          %h4
-            %i.fi-social-github 
-            Github
-          .attribute
-            %h5 Stargazers
-            .value= pod.github_stargazer_count
-          .attribute
-            %h5 Watchers
-            .value= pod.github_watcher_count
-          .attribute
-            %h5 Forks
-            .value= pod.github_fork_count
-          .attribute
-            %h5 Contoributors
-            .value= pod.github_contributor_count
-          .attribute
-            %h5 First Commit
-            .value
-            = time_ago_in_words pod.first_committed_at
-            ago
-          .attribute
-            %h5 Last Commit
-            .value
-            = time_ago_in_words pod.last_committed_at
-            ago
-        .attribute-section
-          %h4 
-            %i.fi-monitor
-            Devoloper
-          .attribute
-            %a
-            %i.fi-home
-              = link_to "Website", pod.homepage
-          .attribute
-            %a
-            %i.fi-book
-              = link_to "Documentation", pod.documentation_url
-          .attribute
-            %a
-            %i.fi-social-github
-            = link_to "Social Media", pod.social_media_url
-          
+.results-container
+  - @pods.each do |pod|
+    .row
+      .small-12.small-centered.columns
+        .result
+          .attribute-section
+            %h2
+              = pod.name
+              %span.version= pod.current_version
+              %span.date
+                released at :
+                = time_ago_in_words pod.current_version_released_at
+                ago
+              / %span.date
+              /   First Version :
+              /   = time_ago_in_words pod.first_version_released_at
+              /   ago
+            %p= pod.summary
+          .row
+            .small-12.small-centered.columns
+              %h4
+                %i.fi-social-github 
+                Github
+              .large-2.columns
+                %h5 Stargazers
+                .value.num= pod.github_stargazer_count
+              .large-2.columns
+                %h5 Watchers
+                .value.num= pod.github_watcher_count
+              .large-2.columns
+                %h5 Forks
+                .value.num= pod.github_fork_count
+              .large-2.columns
+                %h5 Contoributors
+                .value.num= pod.github_contributor_count
+              .large-2.columns
+                %h5 First Commit
+                .value
+                = time_ago_in_words pod.first_committed_at
+                ago
+              .large-2.columns
+                %h5 Last Commit
+                .value
+                = time_ago_in_words pod.last_committed_at
+                ago
+          .row
+            .small-12.small-centered.columns
+              %h4 
+                %i.fi-monitor
+                Devoloper
+              .large-4.columns
+                %a
+                %i.fi-home
+                  = link_to "Website", pod.homepage
+              .large-4.columns
+                %a
+                %i.fi-book
+                  = link_to "Documentation", pod.documentation_url
+              .large-4.columns
+                %a
+                %i.fi-social-github
+                = link_to "Social Media", pod.social_media_url
+      
 
 
         / %ul
