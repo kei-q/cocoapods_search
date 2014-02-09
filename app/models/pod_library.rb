@@ -113,9 +113,14 @@ class PodLibrary < ActiveRecord::Base
     super || 0
   end
 
+  def last_commit_age
+    (Time.now - (last_committed_at || 1.year.ago)) / 86400.0 / 365
+  end
+
   def calc_score
-    self.score = github_watcher_count + github_stargazer_count + github_fork_count + github_contributor_count
-    # TODO(luvtechno): Consider recent activities
+    github_score = github_watcher_count + github_stargazer_count + github_fork_count + github_contributor_count * 10
+    age_factor = Math.exp(-last_commit_age)
+    self.score = github_score * age_factor
   end
 
   def self.sets
