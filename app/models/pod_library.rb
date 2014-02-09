@@ -75,7 +75,7 @@ class PodLibrary < ActiveRecord::Base
     if update_releases
       self.github_raw_data[:releases] = github_releases
       release = github_raw_data[:releases].find { |release| release.tag_name == git_tag }
-      self.current_version_released_at = release.created_at
+      self.current_version_released_at = release.created_at if release
     end
 
     save
