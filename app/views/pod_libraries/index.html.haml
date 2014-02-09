@@ -3,7 +3,7 @@
   .row
     .small-12.small-centered.columns
       = form_tag root_path, method: :get do
-        %input{ type: "text", name: 'q', value: params[:q] }
+        %input#query{ type: "text", name: 'q', value: params[:q] }
 
 .results-container
   - @pods.each do |pod|
