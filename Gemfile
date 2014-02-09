@@ -55,6 +55,8 @@ gem 'kaminari'
 
 gem 'pry-rails'
 
+gem 'compass-rails', '~> 1.1.3'
+
 group :development, :test do
   gem 'thin'
   gem 'pry-nav'
