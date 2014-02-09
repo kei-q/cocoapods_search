@@ -2,7 +2,7 @@
 .search-container
   .row
     .small-12.small-centered.columns
-      %input{:type=>"text"}
+      %input{ type: "text", value: params[:q] }
 
 .results-container
   - @pods.each do |pod|
