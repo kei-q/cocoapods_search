@@ -53,9 +53,10 @@ gem 'cocoapods-core', github: 'luvtechno/cocoapods-core'
 gem 'octokit'
 gem 'kaminari'
 
+gem 'pry-rails'
+
 group :development, :test do
   gem 'thin'
-  gem 'pry-rails'
   gem 'pry-nav'
   gem 'pry-doc'
   gem 'pry-remote'
