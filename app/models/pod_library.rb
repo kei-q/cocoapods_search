@@ -50,7 +50,11 @@ class PodLibrary < ActiveRecord::Base
     @contributors ||= self.class.github_client.contributors(github_repo_name)
   end
 
-  def fetch_github_repo_data(update_repo: false, update_commits: false, update_contributors: false)
+  def github_releases
+    @releases ||= self.class.github_client.releases(github_repo_name)
+  end
+
+  def fetch_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
     if update_repo
       self.github_raw_data[:repo] = github_repo
       self.github_watcher_count = github_raw_data[:repo].watchers_count
@@ -66,6 +70,12 @@ class PodLibrary < ActiveRecord::Base
     if update_contributors
       self.github_raw_data[:contributors] = github_contributors
       self.github_contributor_count = github_raw_data[:contributors].size
+    end
+
+    if update_releases
+      self.github_raw_data[:releases] = github_releases
+      release = github_raw_data[:releases].find { |release| release.tag_name == git_tag }
+      self.current_version_released_at = release.created_at
     end
 
     save
