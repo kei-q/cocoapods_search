@@ -102,7 +102,7 @@ class PodLibrary < ActiveRecord::Base
 
   private
   def self.github_client
-    @client ||= Octokit::Client.new(oauth_token: ENV['GITHUB_TOKEN'])
+    @client ||= Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
   end
 
   def self.path
