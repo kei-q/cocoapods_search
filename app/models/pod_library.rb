@@ -59,7 +59,7 @@ class PodLibrary < ActiveRecord::Base
 
     if update_repo
       self.github_raw_data[:repo] = github_repo
-      self.github_watcher_count = github_raw_data[:repo].watchers_count
+      self.github_watcher_count = github_raw_data[:repo].subscribers_count
       self.github_stargazer_count = github_raw_data[:repo].stargazers_count
       self.github_fork_count = github_raw_data[:repo].forks_count
     end
