@@ -120,6 +120,12 @@ class PodLibrary < ActiveRecord::Base
     super || rand(100).days.ago
   end
 
+  def calc_score
+    self.score = github_watcher_count + github_stargazer_count + github_fork_count + github_contributor_count
+    # TODO(luvtechno): Consider recent activities
+    save
+  end
+
   def self.sets
     @sets ||= Pod::Source.new(path).pod_sets
   end
