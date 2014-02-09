@@ -49,7 +49,7 @@ gem 'modernizr-rails'
 
 gem 'meta-tags', require: 'meta_tags'
 
-gem 'cocoapods'
+gem 'cocoapods-core', github: 'luvtechno/cocoapods-core'
 gem 'octokit'
 
 group :development, :test do
