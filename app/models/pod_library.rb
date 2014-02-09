@@ -97,36 +97,20 @@ class PodLibrary < ActiveRecord::Base
     super || "http://cocoadocs.org/docsets/#{name}/#{current_version}/"
   end
 
-  def current_version_released_at
-    super
-  end
-
-  def first_version_released_at
-    super
-  end
-
   def github_watcher_count
-    super
+    super || 0
   end
 
   def github_stargazer_count
-    super
+    super || 0
   end
 
   def github_fork_count
-    super
+    super || 0
   end
 
   def github_contributor_count
-    super
-  end
-
-  def first_committed_at
-    super
-  end
-
-  def last_committed_at
-    super
+    super || 0
   end
 
   def calc_score
