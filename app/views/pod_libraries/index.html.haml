@@ -25,7 +25,7 @@
           .row
             .small-12.small-centered.columns
               %h4
-                %i.fi-social-github 
+                %i.fi-social-github
                 Github
               .large-2.columns
                 %h5 Stargazers
@@ -51,7 +51,7 @@
                 ago
           .row
             .small-12.small-centered.columns
-              %h4 
+              %h4
                 %i.fi-monitor
                 Devoloper
               .large-4.columns
@@ -66,7 +66,7 @@
                 %a
                 %i.fi-social-github
                 = link_to "Social Media", pod.social_media_url
-      
+
 
 
         / %ul
@@ -84,8 +84,5 @@
         /   # %li= pod.github_stargazer_count
         /   # %li= pod.github_fork_count
         /   # %li= pod.github_contributor_count
-= paginate @pods
-
-%br
-
-= link_to 'New Pod library', new_pod_library_path
+  .row
+    = paginate @pods
