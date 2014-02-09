@@ -7,39 +7,65 @@
 %div.results
 %ul.results
 %li.result.row
-%div.small-12.small-centered.large-uncentered.columns
-  - @pods.each do |pod|
-    .info.panel
-      %i.fi-music
-      %h2
-        = pod.name
-        %span= pod.current_version
-      %p= time_ago_in_words pod.current_version_released_at
-      %p= time_ago_in_words pod.first_version_released_at
-      %p= pod.summary
-      .attribute-section
-        %h3 Basic Infomation
-        .attribute
-          %a= link_to pod.homepage, pod.homepage
-        .attribute
-          %a= link_to "amano", pod.social_media_url
-        .attribute
-          %a= link_to pod.documentation_url, pod.documentation_url
-      .attribute-section
-        %h3 Github stats
-        .attribute
-          %p= pod.github_stargazer_count
-        .attribute
-          %p= pod.github_watcher_count
-        .attribute
-          %p= pod.github_fork_count
-        .attribute
-          %p= pod.github_contributor_count
-        .attribute
-          %p= time_ago_in_words pod.first_committed_at
-        .attribute
-          %p= time_ago_in_words pod.last_committed_at
+  %div.small-12.small-centered.large-uncentered.columns
+    - @pods.each do |pod|
+      .info.panel
+        %h2
+          = pod.name
+          %span.version= pod.current_version
+          %span.date
+            released at :
+            = time_ago_in_words pod.current_version_released_at
+            ago
+          / %span.date
+          /   First Version :
+          /   = time_ago_in_words pod.first_version_released_at
+          /   ago
+        %p= pod.summary
 
+        .attribute-section
+          %h4
+            %i.fi-social-github 
+            Github
+          .attribute
+            %h5 Stargazers
+            .value= pod.github_stargazer_count
+          .attribute
+            %h5 Watchers
+            .value= pod.github_watcher_count
+          .attribute
+            %h5 Forks
+            .value= pod.github_fork_count
+          .attribute
+            %h5 Contoributors
+            .value= pod.github_contributor_count
+          .attribute
+            %h5 First Commit
+            .value
+            = time_ago_in_words pod.first_committed_at
+            ago
+          .attribute
+            %h5 Last Commit
+            .value
+            = time_ago_in_words pod.last_committed_at
+            ago
+        .attribute-section
+          %h4 
+            %i.fi-monitor
+            Devoloper
+          .attribute
+            %a
+            %i.fi-home
+              = link_to "Website", pod.homepage
+          .attribute
+            %a
+            %i.fi-book
+              = link_to "Documentation", pod.documentation_url
+          .attribute
+            %a
+            %i.fi-social-github
+            = link_to "Social Media", pod.social_media_url
+          
 
 
         / %ul
