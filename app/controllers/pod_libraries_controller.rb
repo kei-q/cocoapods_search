@@ -4,7 +4,7 @@ class PodLibrariesController < ApplicationController
   # GET /pod_libraries
   # GET /pod_libraries.json
   def index
-    @pods = PodLibrary.order(score: :desc).page(params[:page])
+    @pods = PodLibrary.where('score IS NOT NULL').order(score: :desc).page(params[:page])
   end
 
   # GET /pod_libraries/1
