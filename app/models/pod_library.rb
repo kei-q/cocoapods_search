@@ -34,6 +34,10 @@ class PodLibrary < ActiveRecord::Base
     where("name ILIKE :query OR summary ILIKE :query OR description ILIKE :query", query: query)
   end
 
+  def self.github_client
+    @client ||= Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
+  end
+
   def github?
     git_source.present? && git_source.start_with?('https://github.com')
   end
@@ -137,10 +141,6 @@ class PodLibrary < ActiveRecord::Base
   end
 
   private
-  def self.github_client
-    @client ||= Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
-  end
-
   def self.path
     './tmp/specs'
   end
