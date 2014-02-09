@@ -8,17 +8,19 @@ body{
 li{
   list-style:none;
 }
+.search-container{
+  padding: 110px 0;
+}
 
-.panel{
+.results-container{
+	padding: 20px 0 0 0 ;
+  background-color: #e3e3e3;
+}
+
+.result{
   background-color: white;
-  border-radius: 5px;
-}
-
-.results{
-	margin-top: 20px;
-}
-
-.info{
+  padding: 15px;
+  margin-bottom: 20px;
   .version{
     font-size: 20px;
   }
@@ -27,12 +29,18 @@ li{
   }
   .value{
     font-size: 20px;
+    .num{
+      font-size: 26px;
+    }
   }
 }
 
 .attribute-section{
 	overflow: hidden;
-	margin-top: 20px;
+  margin-bottom: 10px;
+  h2{
+    font-weight: bold;
+  }
   .attribute{
     float: left;
     margin: 0 60px 10px 0; 
