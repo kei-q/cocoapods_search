@@ -62,28 +62,30 @@ class PodLibrary < ActiveRecord::Base
   def fetch_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
     return false unless github?
 
-    if update_repo
-      self.github_raw_data[:repo] = github_repo
-      self.github_watcher_count = github_raw_data[:repo].subscribers_count
-      self.github_stargazer_count = github_raw_data[:repo].stargazers_count
-      self.github_fork_count = github_raw_data[:repo].forks_count
+    self.github_raw_data[:repo] = github_repo if update_repo
+    if github_raw_data[:repo]
+      self.github_watcher_count = github_raw_data[:repo].attrs[:subscribers_count]
+      self.github_stargazer_count = github_raw_data[:repo].attrs[:stargazers_count]
+      self.github_fork_count = github_raw_data[:repo].attrs[:forks_count]
     end
 
-    if update_commits
-      self.github_raw_data[:commits] = github_commits
-      self.last_committed_at = github_raw_data[:commits].first.commit.committer.date
+    self.github_raw_data[:commits] = github_commits if update_commits
+    if github_raw_data[:commits]
+      self.last_committed_at = github_raw_data[:commits].first.attrs[:commit].attrs[:committer].attrs[:date]
     end
 
-    if update_contributors
-      self.github_raw_data[:contributors] = github_contributors
+    self.github_raw_data[:contributors] = github_contributors if update_contributors
+    if github_raw_data[:contributors]
       self.github_contributor_count = github_raw_data[:contributors].size
     end
 
-    if update_releases
-      self.github_raw_data[:releases] = github_releases
-      release = github_raw_data[:releases].find { |release| release.tag_name == git_tag }
-      self.current_version_released_at = release.created_at if release
+    self.github_raw_data[:releases] = github_releases if update_releases
+    if github_raw_data[:releases]
+      release = github_raw_data[:releases].find { |release| release.attrs[:tag_name] == git_tag }
+      self.current_version_released_at = release.attrs[:created_at] if release
     end
+
+    calc_score
 
     save
   rescue Octokit::NotFound => e
@@ -130,7 +132,6 @@ class PodLibrary < ActiveRecord::Base
   def calc_score
     self.score = github_watcher_count + github_stargazer_count + github_fork_count + github_contributor_count
     # TODO(luvtechno): Consider recent activities
-    save
   end
 
   def self.sets
