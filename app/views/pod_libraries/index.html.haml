@@ -15,11 +15,10 @@
               %span.version= pod.current_version
               %span.date
                 released at:
-                = time_ago_in_words pod.current_version_released_at
-                ago
+                = time_ago pod.current_version_released_at
               / %span.date
               /   First Version :
-              /   = time_ago_in_words pod.first_version_released_at
+              /   = time_ago pod.first_version_released_at
               /   ago
             %p= pod.summary
           .row
@@ -42,13 +41,11 @@
               .large-2.columns
                 %h5 First Commit
                 .value
-                = time_ago_in_words pod.first_committed_at
-                ago
+                = time_ago pod.first_committed_at
               .large-2.columns
                 %h5 Last Commit
                 .value
-                = time_ago_in_words pod.last_committed_at
-                ago
+                = time_ago pod.last_committed_at
           .row
             .small-12.small-centered.columns
               %h4
@@ -71,15 +68,15 @@
 
         / %ul
         /   # %li= pod.current_version
-        /   # %li= time_ago_in_words pod.current_version_released_at
-        /   # %li= time_ago_in_words pod.first_version_released_at
+        /   # %li= time_ago pod.current_version_released_at
+        /   # %li= time_ago pod.first_version_released_at
         /   # %li= pod.summary
         /   # %li= pod.description
         /   # %li= link_to pod.homepage, pod.homepage
         /   # %li= link_to pod.social_media_url, pod.social_media_url
         /   # %li= link_to pod.documentation_url, pod.documentation_url
-        /   # %li= time_ago_in_words pod.first_committed_at
-        /   # %li= time_ago_in_words pod.last_committed_at
+        /   # %li= time_ago pod.first_committed_at
+        /   # %li= time_ago pod.last_committed_at
         /   # %li= pod.github_watcher_count
         /   # %li= pod.github_stargazer_count
         /   # %li= pod.github_fork_count

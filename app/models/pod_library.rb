@@ -89,35 +89,35 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def current_version_released_at
-    super || rand(365).days.ago
+    super
   end
 
   def first_version_released_at
-    super || rand(1000).days.ago
+    super
   end
 
   def github_watcher_count
-    super || rand(10)
+    super
   end
 
   def github_stargazer_count
-    super || rand(10)
+    super
   end
 
   def github_fork_count
-    super || rand(10)
+    super
   end
 
   def github_contributor_count
-    super || rand(10)
+    super
   end
 
   def first_committed_at
-    super || rand(1000).days.ago
+    super
   end
 
   def last_committed_at
-    super || rand(100).days.ago
+    super
   end
 
   def calc_score
