@@ -1,3 +1,31 @@
+# == Schema Information
+#
+# Table name: pod_libraries
+#
+#  id                          :integer          not null, primary key
+#  name                        :string(255)
+#  homepage                    :string(255)
+#  social_media_url            :string(255)
+#  documentation_url           :string(255)
+#  summary                     :string(255)
+#  description                 :text
+#  git_source                  :string(255)
+#  git_tag                     :string(255)
+#  current_version             :string(255)
+#  current_version_released_at :datetime
+#  first_version_released_at   :datetime
+#  github_watcher_count        :integer
+#  github_stargazer_count      :integer
+#  github_fork_count           :integer
+#  github_contributor_count    :integer
+#  first_committed_at          :datetime
+#  last_committed_at           :datetime
+#  recent_commits              :text
+#  created_at                  :datetime
+#  updated_at                  :datetime
+#  github_raw_data             :text
+#
+
 class PodLibrary < ActiveRecord::Base
   serialize :github_raw_data, Hash
 
