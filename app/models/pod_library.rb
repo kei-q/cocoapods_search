@@ -73,7 +73,7 @@ class PodLibrary < ActiveRecord::Base
     if github_raw_data[:commits]
       self.last_committed_at = github_raw_data[:commits].first.attrs[:commit].attrs[:committer].attrs[:date]
       dates = pod.github_raw_data[:commits].map { |commit| commit.attrs[:commit].attrs[:committer].attrs[:date] }
-      recent_commit_age = dates.map { |date| Time.now - date.to_time }.average / 86400.0 / 365
+      self.recent_commit_age = dates.map { |date| Time.now - date.to_time }.average / 86400.0 / 365
     end
 
     self.github_raw_data[:contributors] = github_contributors if update_contributors
