@@ -4,8 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.beta1'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
@@ -45,4 +44,36 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'haml-rails'
+
+gem 'foundation-rails'
+gem 'modernizr-rails'
+
+gem 'meta-tags', require: 'meta_tags'
+
+group :development, :test do
+  gem 'thin'
+  gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry-doc'
+  gem 'pry-remote'
+  gem 'dotenv-rails'
+end
+
+group :development do
+  gem 'quiet_assets'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :production do
+  gem 'unicorn'
+  gem 'foreman'
+  gem 'execjs'
+  gem 'rails_12factor'
+end
 
