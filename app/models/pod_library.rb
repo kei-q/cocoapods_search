@@ -47,13 +47,17 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def fetch_github_repo_data(update_repo: false, update_commits: false)
-    self.github_raw_data[:repo] = github_repo if update_repo
-    self.github_watcher_count = github_raw_data[:repo].watchers_count
-    self.github_stargazer_count = github_raw_data[:repo].stargazers_count
-    self.github_fork_count = github_raw_data[:repo].forks_count
+    if update_repo
+      self.github_raw_data[:repo] = github_repo
+      self.github_watcher_count = github_raw_data[:repo].watchers_count
+      self.github_stargazer_count = github_raw_data[:repo].stargazers_count
+      self.github_fork_count = github_raw_data[:repo].forks_count
+    end
 
-    self.github_raw_data[:commits] = github_commits if update_commits
-    self.last_committed_at = github_raw_data[:commits].first.commit.committer.date
+    if update_commits
+      self.github_raw_data[:commits] = github_commits
+      self.last_committed_at = github_raw_data[:commits].first.commit.committer.date
+    end
 
     save
   rescue Octokit::NotFound => e
