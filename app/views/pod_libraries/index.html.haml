@@ -1,16 +1,12 @@
-%h1 Listing pod_libraries
+%h1 Listing pods
 
+= paginate @pods
 %table
-  %tr
-    %th
-    %th
-    %th
-
-  - @pod_libraries.each do |pod_library|
+  - @pods.each do |pod|
     %tr
-      %td= link_to 'Show', pod_library
-      %td= link_to 'Edit', edit_pod_library_path(pod_library)
-      %td= link_to 'Destroy', pod_library, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to pod.name, pod_library_path(pod)
+      %td= pod.summary
+= paginate @pods
 
 %br
 

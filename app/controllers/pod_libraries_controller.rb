@@ -4,7 +4,7 @@ class PodLibrariesController < ApplicationController
   # GET /pod_libraries
   # GET /pod_libraries.json
   def index
-    @pod_libraries = PodLibrary.all
+    @pods = PodLibrary.page(params[:page]).all
   end
 
   # GET /pod_libraries/1
