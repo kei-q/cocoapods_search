@@ -1,1 +1,43 @@
 @import 'foundation_and_overrides';
+@import 'foundation-icons.css';
+
+body{
+  font-family: "GT Walsheim","gt_walsheim_regular","Avant Garde Gothic ITCW01Dm","Avant Garde","Helvetica Neue","Arial";
+}
+
+li{
+  list-style:none;
+}
+
+.panel{
+  background-color: white;
+  border-radius: 5px;
+}
+
+.results{
+	margin-top: 20px;
+}
+
+.info{
+  .version{
+    font-size: 20px;
+  }
+  .date{
+    font-size: 15px;
+  }
+  .value{
+    font-size: 20px;
+  }
+}
+
+.attribute-section{
+	overflow: hidden;
+	margin-top: 20px;
+  .attribute{
+    float: left;
+    margin: 0 60px 10px 0; 
+  }
+}
+
+
+ 
