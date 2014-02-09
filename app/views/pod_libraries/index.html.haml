@@ -28,16 +28,16 @@
                 Github
               .large-2.columns
                 %h5 Stargazers
-                .value.num= pod.github_stargazer_count
+                .value.num= pod.github_stargazer_count || '-'
               .large-2.columns
                 %h5 Watchers
-                .value.num= pod.github_watcher_count
+                .value.num= pod.github_watcher_count || '-'
               .large-2.columns
                 %h5 Forks
-                .value.num= pod.github_fork_count
+                .value.num= pod.github_fork_count || '-'
               .large-2.columns
                 %h5 Contoributors
-                .value.num= pod.github_contributor_count
+                .value.num= pod.github_contributor_count || '-'
               .large-2.columns
                 %h5 First Commit
                 .value
@@ -60,9 +60,10 @@
                 %i.fi-book
                   = link_to "Documentation", pod.documentation_url
               .large-4.columns
-                %a
-                %i.fi-social-github
-                = link_to "Social Media", pod.social_media_url
+                - if pod.social_media_url.present?
+                  %a
+                  %i.fi-social-github
+                  = link_to "Social Media", pod.social_media_url
 
 
 
