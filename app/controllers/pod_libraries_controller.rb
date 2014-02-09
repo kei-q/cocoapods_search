@@ -4,7 +4,9 @@ class PodLibrariesController < ApplicationController
   # GET /pod_libraries
   # GET /pod_libraries.json
   def index
-    @pods = PodLibrary.where('score IS NOT NULL').order(score: :desc).page(params[:page])
+    pods_scope = PodLibrary.where('score IS NOT NULL').order(score: :desc)
+    pods_scope = pods_scope.search(params[:q]) if params[:q]
+    @pods = pods_scope.page(params[:page])
   end
 
   # GET /pod_libraries/1

@@ -29,6 +29,11 @@
 class PodLibrary < ActiveRecord::Base
   serialize :github_raw_data, Hash
 
+  scope :search, -> (q) do
+    query = "%#{q}%"
+    where("name ILIKE :query OR summary ILIKE :query OR description ILIKE :query", query: query)
+  end
+
   def github?
     git_source.present? && git_source.start_with?('https://github.com')
   end
