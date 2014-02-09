@@ -48,6 +48,9 @@ class PodLibrary < ActiveRecord::Base
     self.github_stargazer_count = github_raw_data[:repo].stargazers_count
     self.github_fork_count = github_raw_data[:repo].forks_count
     save
+  rescue Octokit::NotFound => e
+    logger.warn "Error: #{self.name} #{e}"
+    false
   end
 
   def documentation_url
