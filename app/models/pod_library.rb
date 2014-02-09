@@ -121,7 +121,7 @@ class PodLibrary < ActiveRecord::Base
 
   def calc_score
     github_score = github_watcher_count + github_stargazer_count + github_fork_count + github_contributor_count * 10
-    age_factor = Math.exp(-last_commit_age)
+    age_factor = Math.exp(-recent_commit_age)
     self.score = github_score * age_factor
   end
 
