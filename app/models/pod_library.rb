@@ -1,4 +1,6 @@
 class PodLibrary < ActiveRecord::Base
+  serialize :github_raw_data, Hash
+
   def github?
     git_source.present? && git_source.start_with?('https://github.com')
   end
@@ -10,6 +12,14 @@ class PodLibrary < ActiveRecord::Base
 
   def github_repo
     @repo ||= self.class.github_client.repo(github_repo_name)
+  end
+
+  def fetch_github_repo_data
+    self.github_raw_data[:repo] = github_repo
+    self.github_watcher_count = github_raw_data[:repo].watchers_count
+    self.github_stargazer_count = github_raw_data[:repo].stargazers_count
+    self.github_fork_count = github_raw_data[:repo].forks_count
+    save
   end
 
   def documentation_url
