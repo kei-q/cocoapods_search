@@ -1,4 +1,17 @@
 class PodLibrary < ActiveRecord::Base
+  def github?
+    git_source.present? && git_source.start_with?('https://github.com')
+  end
+
+  def github_repo_name
+    match_data = git_source.match("https://github.com/(.+?)/(.+?).git")
+    "#{match_data[1]}/#{match_data[2]}"
+  end
+
+  def github_repo
+    @repo ||= self.class.github_client.repo(github_repo_name)
+  end
+
   def documentation_url
     super || "http://cocoadocs.org/docsets/#{name}/#{current_version}/"
   end
@@ -47,6 +60,10 @@ class PodLibrary < ActiveRecord::Base
   end
 
   private
+  def self.github_client
+    @client ||= Octokit::Client.new(oauth_token: ENV['GITHUB_TOKEN'])
+  end
+
   def self.path
     './tmp/specs'
   end
