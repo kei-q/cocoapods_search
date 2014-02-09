@@ -1,6 +1,6 @@
-class CreatePods < ActiveRecord::Migration
+class CreatePodLibraries < ActiveRecord::Migration
   def change
-    create_table :pods do |t|
+    create_table :pod_libraries do |t|
       t.string :name
       t.string :homepage
       t.string :social_media_url

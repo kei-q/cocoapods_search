@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe "Pods" do
-  describe "GET /pods" do
+describe "PodLibraries" do
+  describe "GET /pod_libraries" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get pods_path
+      get pod_libraries_path
       response.status.should be(200)
     end
   end

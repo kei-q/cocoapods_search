@@ -49,8 +49,9 @@ gem 'modernizr-rails'
 
 gem 'meta-tags', require: 'meta_tags'
 
-gem 'cocoapods'
+gem 'cocoapods-core', github: 'luvtechno/cocoapods-core'
 gem 'octokit'
+gem 'kaminari'
 
 group :development, :test do
   gem 'thin'

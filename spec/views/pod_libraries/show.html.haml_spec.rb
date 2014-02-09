@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "pods/show" do
+describe "pod_libraries/show" do
   before(:each) do
-    @pod = assign(:pod, stub_model(Pod))
+    @pod_library = assign(:pod_library, stub_model(PodLibrary))
   end
 
   it "renders attributes in <p>" do

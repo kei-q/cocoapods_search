@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209061255) do
+ActiveRecord::Schema.define(version: 20140209073805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "pods", force: true do |t|
+  create_table "pod_libraries", force: true do |t|
     t.string   "name"
     t.string   "homepage"
     t.string   "social_media_url"

@@ -1,0 +1,28 @@
+%h1 Listing pods
+
+= paginate @pods
+
+%div
+  - @pods.each do |pod|
+    %div
+      %h2= pod.name
+      %ul
+        %li= pod.current_version
+        %li= time_ago_in_words pod.current_version_released_at
+        %li= time_ago_in_words pod.first_version_released_at
+        %li= pod.summary
+        %li= pod.description
+        %li= link_to pod.homepage, pod.homepage
+        %li= link_to pod.social_media_url, pod.social_media_url
+        %li= link_to pod.documentation_url, pod.documentation_url
+        %li= time_ago_in_words pod.first_committed_at
+        %li= time_ago_in_words pod.last_committed_at
+        %li= pod.github_watcher_count
+        %li= pod.github_stargazer_count
+        %li= pod.github_fork_count
+        %li= pod.github_contributor_count
+= paginate @pods
+
+%br
+
+= link_to 'New Pod library', new_pod_library_path

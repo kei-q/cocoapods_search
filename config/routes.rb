@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :pods
+  root 'pod_libraries#index'
 
-  root 'pods#index'
+  resources :pod_libraries
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
