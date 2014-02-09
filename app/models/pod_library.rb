@@ -55,6 +55,8 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def fetch_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
+    return false unless github?
+
     if update_repo
       self.github_raw_data[:repo] = github_repo
       self.github_watcher_count = github_raw_data[:repo].watchers_count
