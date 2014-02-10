@@ -57,6 +57,8 @@ gem 'pry-rails'
 
 gem 'compass-rails', '~> 1.1.3'
 
+gem 'newrelic_rpm'
+
 group :development, :test do
   gem 'thin'
   gem 'pry-nav'
