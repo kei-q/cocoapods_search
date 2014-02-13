@@ -63,11 +63,14 @@ li{
       line-height: 1;
     }
     line-height: 1;
+    padding-bottom: 10px;
     color: $gray3;
+    .version {
+      padding: 0 5px 0 5px;
+    }
     .date {
       font-size: 70%;
     }
-    padding-bottom: 10px;
   }
   .summary {
     padding-bottom: 20px;

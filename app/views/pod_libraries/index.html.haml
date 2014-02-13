@@ -28,7 +28,8 @@
           .small-12.columns.title
             %h2
               = link_to pod.name, pod.homepage
-              %span.version= pod.current_version
+              %span.version
+                = pod.current_version
               %span.date
                 released:
                 = time_ago pod.current_version_released_at
