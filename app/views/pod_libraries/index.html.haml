@@ -23,10 +23,13 @@
           %a Stargazers
         %dd
           %a Last Commit
-  - @pods.each do |pod|
+  - @pods.each.with_index(1 + @pods.offset_value) do |pod, rank|
     .row.collapse.result
-      .small-12.columns
-        .row
+      .small-1.column.rank
+        .rank-number
+          = rank
+      .small-11.columns
+        .row.collapse
           .small-12.columns.title
             %h2
               = link_to pod.name, pod.homepage
@@ -35,10 +38,10 @@
               %span.date
                 released:
                 = time_ago pod.current_version_released_at
-        .row.summary
+        .row.collapse.summary
           .small-12.columns
             = pod.summary
-        .row.stats
+        .row.collapse.stats
           .small-4.medium-2.columns
             .key
               %i.fi-social-github

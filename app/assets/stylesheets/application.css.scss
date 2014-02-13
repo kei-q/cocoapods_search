@@ -44,6 +44,21 @@
   border: solid 1px $layout-light-border;
   margin-bottom: -1px;
 
+  .rank {
+    text-align: center;
+  }
+  .rank-number {
+    display: inline-block;
+    @include border-radius(3px);
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: rem-calc(24px);
+    background-color: $blue1;
+    color: $lightergray1;
+    text-align: center;
+  }
+
   .title {
     h2 {
       line-height: 1;
