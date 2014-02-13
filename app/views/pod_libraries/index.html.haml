@@ -1,84 +1,64 @@
 
 .search-container
-  .row
-    .small-12.small-centered.columns
+  .row.collapse
+    .small-12.columns
       = form_tag root_path, method: :get do
-        %input#query{ type: "text", name: 'q', value: params[:q] }
+        = text_field_tag 'q', params[:q], placeholder: 'SEARCH'
+  .row.collapse.sample
+    .small-12.columns
+      - %w(REST JSON iOS7 UIKit Flat Gesture Authentication Animation Progress Core\ Data).each do |query|
+        %span.query
+          = link_to query, root_path(q: query)
 
 .results-container
+  .row.collapse.sort-control
+    .small-12.columns
+      %dl.sub-nav
+        %dt ORDER BY:
+        %dd.active
+          %a Popularity
+        %dd
+          %a Contributors
+        %dd
+          %a Stargazers
+        %dd
+          %a Last Commit
   - @pods.each do |pod|
-    .row
-      .small-12.small-centered.columns
-        .result
-          .attribute-section
+    .row.collapse.result
+      .small-12.columns
+        .row
+          .small-12.columns.title
             %h2
-              = pod.name
-              %span.version= pod.current_version
+              = link_to pod.name, pod.homepage
+              %span.version
+                = pod.current_version
               %span.date
-                released at:
+                released:
                 = time_ago pod.current_version_released_at
-              / %span.date
-              /   First Version :
-              /   = time_ago pod.first_version_released_at
-              /   ago
-            %p= pod.summary
-          .row
-            .small-12.small-centered.columns
-              %h4
-                %i.fi-social-github
-                Github
-              .large-2.columns
-                %h5 Stargazers
-                .value.num= pod.github_stargazer_count || '-'
-              .large-2.columns
-                %h5 Watchers
-                .value.num= pod.github_watcher_count || '-'
-              .large-2.columns
-                %h5 Forks
-                .value.num= pod.github_fork_count || '-'
-              .large-2.columns
-                %h5 Contoributors
-                .value.num= pod.github_contributor_count || '-'
-              .large-2.columns
-                %h5 First Commit
-                .value
-                = time_ago pod.first_committed_at
-              .large-2.columns
-                %h5 Last Commit
-                .value
-                = time_ago pod.last_committed_at
-          .row
-            .small-12.small-centered.columns
-              %h4
-                %i.fi-monitor
-                Developer
-              .large-4.columns
-                %i.fi-home
-                  = link_to "Website", pod.homepage
-              .large-4.columns
-                %i.fi-book
-                  = link_to "Documentation", pod.documentation_url
-              .large-4.columns
-                - if pod.social_media_url.present?
-                  %i.fi-social-github
-                  = link_to "Social Media", pod.social_media_url
-
-
-
-        / %ul
-        /   # %li= pod.current_version
-        /   # %li= time_ago pod.current_version_released_at
-        /   # %li= time_ago pod.first_version_released_at
-        /   # %li= pod.summary
-        /   # %li= pod.description
-        /   # %li= link_to pod.homepage, pod.homepage
-        /   # %li= link_to pod.social_media_url, pod.social_media_url
-        /   # %li= link_to pod.documentation_url, pod.documentation_url
-        /   # %li= time_ago pod.first_committed_at
-        /   # %li= time_ago pod.last_committed_at
-        /   # %li= pod.github_watcher_count
-        /   # %li= pod.github_stargazer_count
-        /   # %li= pod.github_fork_count
-        /   # %li= pod.github_contributor_count
+        .row.summary
+          .small-12.columns
+            = pod.summary
+        .row.stats
+          .small-4.medium-2.columns
+            .key
+              %i.fi-social-github
+              Contoributors
+            .value
+              = pod.github_contributor_count || '-'
+          .small-4.medium-2.columns
+            .key
+              %i.fi-star
+              Stargazers
+            .value
+              = pod.github_stargazer_count || '-'
+          .small-4.medium-2.columns
+            .key
+              %i.fi-clock
+              Last Commit
+            .value
+              = time_ago pod.last_committed_at
+          .small-4.medium-2.columns
+          .small-4.medium-2.columns
+          .small-4.medium-2.columns
   .row
     = paginate @pods

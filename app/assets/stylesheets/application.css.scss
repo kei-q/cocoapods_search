@@ -4,48 +4,65 @@
 @import 'foundation_and_overrides';
 @import 'foundation-icons';
 
-body{
-  font-family: "GT Walsheim","gt_walsheim_regular","Avant Garde Gothic ITCW01Dm","Avant Garde","Helvetica Neue","Arial";
-}
-
-li{
-  list-style:none;
-}
 .search-container{
-  padding: 110px 0;
-}
-
-.results-container{
-	padding: 20px 0 0 0 ;
-  background-color: #e3e3e3;
-}
-
-.result{
-  background-color: white;
-  padding: 15px;
-  margin-bottom: 20px;
-  .version{
-    font-size: 20px;
-  }
-  .date{
-    font-size: 15px;
-  }
-  .value{
-    font-size: 20px;
-    .num{
-      font-size: 26px;
+  padding: 70px 0 0px;
+  .sample {
+    padding: 10px 0 20px;
+    .query {
+      padding-right: 10px;
     }
   }
 }
 
-.attribute-section{
-	overflow: hidden;
-  margin-bottom: 10px;
-  h2{
-    font-weight: bold;
+.results-container{
+	padding: 30px 0 20px 0;
+  background-color: lighten(#66c8d6, 20%);
+
+}
+
+.sort-control {
+  .sub-nav {
+    .active {
+      a {
+        @include border-radius(0);
+      }
+    }
   }
-  .attribute{
-    float: left;
-    margin: 0 60px 10px 0;
+}
+
+.result{
+  background-color: white;
+  padding: 15px 5px;
+  border: solid 1px $layout-light-border;
+  margin-bottom: -1px;
+
+  .title {
+    h2 {
+      line-height: 1;
+    }
+    line-height: 1;
+    padding-bottom: 10px;
+    color: $gray3;
+    .version {
+      padding: 0 5px 0 5px;
+    }
+    .date {
+      font-size: 70%;
+    }
+  }
+  .summary {
+    padding-bottom: 20px;
+    color: $gray2;
+  }
+
+  .stats {
+    font-size: 80%;
+    .key {
+      color: $gray1;
+      padding-bottom: 5px;
+    }
+    .value {
+      color: $gray2;
+    }
   }
 }
