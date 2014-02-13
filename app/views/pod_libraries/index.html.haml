@@ -13,14 +13,16 @@
 .results-container
   .row.collapse.sort-control
     .small-12.columns
-      %ul.button-group
-        %li.button
-          Recent
-        %li.button
-          Popular
-        %li.button
-          Starred
-
+      %dl.sub-nav
+        %dt ORDER BY:
+        %dd.active
+          %a Popularity
+        %dd
+          %a Contributors
+        %dd
+          %a Stargazers
+        %dd
+          %a Last Commit
   - @pods.each do |pod|
     .row.collapse.result
       .small-12.columns
