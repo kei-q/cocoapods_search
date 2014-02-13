@@ -3,7 +3,9 @@
   .row
     .small-12.small-centered.columns
       = form_tag root_path, method: :get do
-        %input#query{ type: "text", name: 'q', value: params[:q] }
+        = text_field_tag 'q', params[:q], placeholder: 'SEARCH'
+      - %w(REST JSON iOS7 authentication progress UIKit gesture).each do |query|
+        = link_to query, root_path(q: query)
 
 .results-container
   - @pods.each do |pod|
