@@ -29,6 +29,20 @@
 class PodLibrary < ActiveRecord::Base
   serialize :github_raw_data, Hash
 
+  ORDER_TYPES = %w(popularity contributors stargazers last_commit).freeze
+  scope :sort, ->(order_type) do
+    case order_type
+    when 'popularity'
+      order(score: :desc)
+    when 'contributors'
+      where('github_contributor_count IS NOT NULL').order(github_contributor_count: :desc)
+    when 'stargazers'
+      where('github_stargazer_count IS NOT NULL').order(github_stargazer_count: :desc)
+    when 'last_commit'
+      where('last_committed_at IS NOT NULL').order(last_committed_at: :desc)
+    end
+  end
+
   scope :search, -> (q) do
     query = "%#{q}%"
     where("name ILIKE :query OR summary ILIKE :query OR description ILIKE :query", query: query)

@@ -4,8 +4,10 @@ class PodLibrariesController < ApplicationController
   # GET /pod_libraries
   # GET /pod_libraries.json
   def index
-    pods_scope = PodLibrary.where('score IS NOT NULL').order(score: :desc)
+    pods_scope = PodLibrary.where('score IS NOT NULL')
     pods_scope = pods_scope.search(params[:q]) if params[:q]
+    @order_type = params[:o] || 'popularity'
+    pods_scope = pods_scope.sort(@order_type)
     @pods = pods_scope.page(params[:page]).per(10)
   end
 
