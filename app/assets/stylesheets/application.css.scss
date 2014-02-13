@@ -32,7 +32,7 @@
   .sub-nav {
     .active {
       a {
-        @include border-radius(0);
+        @include border-radius(3px);
       }
     }
   }
