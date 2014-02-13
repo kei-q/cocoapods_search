@@ -28,7 +28,7 @@
       .small-1.column.rank
         .rank-number
           = rank
-      .small-11.columns
+      .small-9.columns
         .row.collapse
           .small-12.columns.title
             %h2
@@ -60,6 +60,9 @@
               Last Commit
             .value
               = time_ago pod.last_committed_at
+      .small-2.columns.text-center
+        = link_to 'Docs', pod.documentation_url, class: 'button tiny'
+        = link_to 'Spec', pod.documentation_url, class: 'button tiny'
   .row
     = paginate @pods
 
