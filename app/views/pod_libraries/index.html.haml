@@ -42,19 +42,25 @@
           .small-12.columns
             = pod.summary
         .row.collapse.stats
-          .small-4.medium-2.columns
+          .small-3.medium-2.columns
+            .key
+              %i.fi-heart
+              Popularity
+            .value
+              = (pod.score / 1000.0).round(1)
+          .small-3.medium-2.columns
             .key
               %i.fi-social-github
               Contoributors
             .value
               = pod.github_contributor_count || '-'
-          .small-4.medium-2.columns
+          .small-3.medium-2.columns
             .key
               %i.fi-star
               Stargazers
             .value
               = pod.github_stargazer_count || '-'
-          .small-4.medium-8.columns
+          .small-3.medium-6.columns
             .key
               %i.fi-clock
               Last Commit
