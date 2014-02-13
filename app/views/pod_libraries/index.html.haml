@@ -37,26 +37,26 @@
           .small-12.columns
             = pod.summary
         .row.stats
-          .large-2.columns
+          .small-4.medium-2.columns
             .key
               %i.fi-social-github
               Contoributors
             .value
               = pod.github_contributor_count || '-'
-          .large-2.columns
+          .small-4.medium-2.columns
             .key
               %i.fi-star
               Stargazers
             .value
               = pod.github_stargazer_count || '-'
-          .large-2.columns
+          .small-4.medium-2.columns
             .key
               %i.fi-clock
               Last Commit
             .value
               = time_ago pod.last_committed_at
-          .large-2.columns
-          .large-2.columns
-          .large-2.columns
+          .small-4.medium-2.columns
+          .small-4.medium-2.columns
+          .small-4.medium-2.columns
   .row
     = paginate @pods
