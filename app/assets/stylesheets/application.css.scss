@@ -42,9 +42,9 @@ li{
 }
 
 .results-container{
-	padding: 20px 0 0 0 ;
-  // background-color: #e3e3e3;
+	padding: 20px 0 20px 0;
   background-color: lighten(#66c8d6, 20%);
+
 }
 
 .sort-control {
@@ -54,7 +54,6 @@ li{
 .result{
   background-color: white;
   padding: 10px;
-  // margin-bottom: 20px;
   border: solid 1px $layout-light-border;
   margin-bottom: -1px;
 
@@ -87,28 +86,4 @@ li{
       color: $gray2;
     }
   }
-  // .version{
-  //   font-size: 20px;
-  // }
-  // .date{
-  //   font-size: 15px;
-  // }
-  // .value{
-  //   font-size: 20px;
-  //   .num{
-  //     font-size: 26px;
-  //   }
-  // }
 }
-
-// .attribute-section{
-// 	overflow: hidden;
-//   margin-bottom: 10px;
-//   h2{
-//     font-weight: bold;
-//   }
-//   .attribute{
-//     float: left;
-//     margin: 0 60px 10px 0;
-//   }
-// }
