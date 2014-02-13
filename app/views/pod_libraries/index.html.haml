@@ -4,9 +4,11 @@
     .small-12.columns
       = form_tag root_path, method: :get do
         = hidden_field_tag 'o', @order_type
-        = text_field_tag 'q', params[:q], placeholder: 'SEARCH'
+        = text_field_tag 'q', params[:q], placeholder: 'SEARCH BY KEYWORDS'
   .row.collapse.sample
     .small-12.columns
+      %span.query
+        Or try...
       - %w(REST JSON iOS7 UIKit Flat Blur Gesture Authentication Animation Progress Core\ Data MapKit Bluetooth).each do |query|
         %span.query
           = link_to query, root_path(o: @order_type, q: query)
