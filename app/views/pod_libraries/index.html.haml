@@ -51,15 +51,12 @@
               Stargazers
             .value
               = pod.github_stargazer_count || '-'
-          .small-4.medium-2.columns
+          .small-4.medium-8.columns
             .key
               %i.fi-clock
               Last Commit
             .value
               = time_ago pod.last_committed_at
-          .small-4.medium-2.columns
-          .small-4.medium-2.columns
-          .small-4.medium-2.columns
   .row
     = paginate @pods
 
