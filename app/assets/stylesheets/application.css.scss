@@ -4,6 +4,10 @@
 @import 'foundation_and_overrides';
 @import 'foundation-icons';
 
+::selection {
+  background: #7fdae7;
+}
+
 .search-container{
   padding: 70px 0 50px;
   .sample {
