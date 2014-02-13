@@ -6,7 +6,7 @@ class PodLibrariesController < ApplicationController
   def index
     pods_scope = PodLibrary.where('score IS NOT NULL').order(score: :desc)
     pods_scope = pods_scope.search(params[:q]) if params[:q]
-    @pods = pods_scope.page(params[:page])
+    @pods = pods_scope.page(params[:page]).per(10)
   end
 
   private
