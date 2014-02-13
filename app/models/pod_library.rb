@@ -27,6 +27,7 @@
 #
 
 class PodLibrary < ActiveRecord::Base
+  has_one :raw_datum
   serialize :github_raw_data, Hash
 
   ORDER_TYPES = %w(popularity contributors stargazers last_commit).freeze

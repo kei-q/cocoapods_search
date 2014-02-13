@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209174955) do
+ActiveRecord::Schema.define(version: 20140213192817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,5 +43,14 @@ ActiveRecord::Schema.define(version: 20140209174955) do
   end
 
   add_index "pod_libraries", ["score"], name: "index_pod_libraries_on_score", using: :btree
+
+  create_table "raw_data", force: true do |t|
+    t.integer  "pod_library_id"
+    t.text     "github_raw_data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "raw_data", ["pod_library_id"], name: "index_raw_data_on_pod_library_id", using: :btree
 
 end
