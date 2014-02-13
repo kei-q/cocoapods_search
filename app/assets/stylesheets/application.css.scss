@@ -10,6 +10,10 @@
 
 .search-container{
   padding: 70px 0 50px;
+
+  input[type="text"] {
+    font-weight: 100;
+  }
   .sample {
     .query {
       font-size: rem-calc(14);
