@@ -17,7 +17,8 @@ $lightgray1: #EBEDEF;
 $lightgray2: #D7DBDF;
 $lightergray1: #f5f5f5;
 $blue1: #00A4BB;
-$blue2: #006F8E;
+$blue2: darken($blue1, 15%);
+// $blue2: #006F8E;
 $red1: #FF3333;
 $red2: #F55B3E;
 $green1: #6CC644;
@@ -55,6 +56,7 @@ $light-red: #FCC;
 // We use these to control various global styles
 // $body-bg: #fff;
 // $body-font-color: #222;
+$body-font-color: $gray4;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $body-font-family: "GT Walsheim","gt_walsheim_regular","Avant Garde Gothic ITCW01Dm","Avant Garde","Helvetica Neue","Arial";
 // $body-font-weight: normal;
@@ -72,6 +74,7 @@ $body-font-weight: 300;
 // We use these as default colors throughout
 $primary-color: $blue1;
 // $secondary-color: #e7e7e7;
+$secondary-color: $blue2;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
@@ -875,17 +878,23 @@ $fieldset-padding: 2.2rem;
 // $sub-nav-font-family: $body-font-family;
 // $sub-nav-font-size: rem-calc(14);
 // $sub-nav-font-color: #999;
+$sub-nav-font-color: $gray2;
 // $sub-nav-font-weight: normal;
+$sub-nav-font-weight: 300;
 // $sub-nav-text-decoration: none;
 // $sub-nav-border-radius: 3px;
+$sub-nav-border-radius: 0px;
 // $sub-nav-font-color-hover: scale-color($sub-nav-font-color, $lightness: -25%);
+$sub-nav-font-color-hover: $blue2;
 
 
 // We use these to control the active item styles
 
 // $sub-nav-active-font-weight: normal;
+$sub-nav-active-font-weight: 300;
 // $sub-nav-active-bg: $primary-color;
 // $sub-nav-active-bg-hover: scale-color($sub-nav-active-bg, $lightness: -14%);
+$sub-nav-active-bg-hover: $blue2;
 // $sub-nav-active-color: #fff;
 // $sub-nav-active-padding: rem-calc(3 16);
 // $sub-nav-active-cursor: default;
