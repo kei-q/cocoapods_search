@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#query').focus()
+  $('#q').focus()
