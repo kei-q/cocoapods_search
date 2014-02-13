@@ -61,8 +61,12 @@
             .value
               = time_ago pod.last_committed_at
       .small-2.columns.text-center
-        = link_to 'Docs', pod.documentation_url, class: 'button tiny'
-        = link_to 'Spec', pod.documentation_url, class: 'button tiny'
+        = link_to pod.documentation_url, class: 'button tiny' do
+          %i.fi-page
+          Docs
+        = link_to pod.documentation_url, class: 'button tiny' do
+          %i.fi-widget
+          Spec
   .row
     = paginate @pods
 
