@@ -1,17 +1,17 @@
 
 .search-container
-  .row
+  .row.collapse
     .small-12.columns
       = form_tag root_path, method: :get do
         = text_field_tag 'q', params[:q], placeholder: 'SEARCH'
-  .row.sample
+  .row.collapse.sample
     .small-12.columns
       - %w(REST JSON iOS7 UIKit Flat Gesture Authentication Animation Progress Core\ Data).each do |query|
         %span.query
           = link_to query, root_path(q: query)
 
 .results-container
-  .row.sort-control
+  .row.collapse.sort-control
     .small-12.columns
       %ul.button-group
         %li.button
@@ -22,7 +22,7 @@
           Starred
 
   - @pods.each do |pod|
-    .row.result
+    .row.collapse.result
       .small-12.columns
         .row
           .small-12.columns.title
