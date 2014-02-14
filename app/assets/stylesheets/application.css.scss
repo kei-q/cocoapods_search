@@ -92,6 +92,11 @@
   }
 }
 
+ul.pagination {
+  display: inline-block;
+  margin: 30px 0 10px;
+}
+
 .footer {
   padding: 30px 0 20px;
   background-color: $blue2;
