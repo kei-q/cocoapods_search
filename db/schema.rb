@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213192817) do
+ActiveRecord::Schema.define(version: 20140214131208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,20 +28,23 @@ ActiveRecord::Schema.define(version: 20140213192817) do
     t.string   "current_version"
     t.datetime "current_version_released_at"
     t.datetime "first_version_released_at"
-    t.integer  "github_watcher_count"
-    t.integer  "github_stargazer_count"
-    t.integer  "github_fork_count"
-    t.integer  "github_contributor_count"
+    t.integer  "github_watcher_count",        default: 0,   null: false
+    t.integer  "github_stargazer_count",      default: 0,   null: false
+    t.integer  "github_fork_count",           default: 0,   null: false
+    t.integer  "github_contributor_count",    default: 0,   null: false
     t.datetime "first_committed_at"
     t.datetime "last_committed_at"
     t.text     "recent_commits"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "github_raw_data"
-    t.integer  "score"
+    t.integer  "score",                       default: 0,   null: false
     t.float    "recent_commit_age",           default: 1.0
   end
 
+  add_index "pod_libraries", ["github_contributor_count"], name: "index_pod_libraries_on_github_contributor_count", using: :btree
+  add_index "pod_libraries", ["github_stargazer_count"], name: "index_pod_libraries_on_github_stargazer_count", using: :btree
+  add_index "pod_libraries", ["last_committed_at"], name: "index_pod_libraries_on_last_committed_at", using: :btree
   add_index "pod_libraries", ["score"], name: "index_pod_libraries_on_score", using: :btree
 
   create_table "raw_data", force: true do |t|
