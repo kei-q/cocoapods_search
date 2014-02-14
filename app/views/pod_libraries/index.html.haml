@@ -43,7 +43,7 @@
         .row.collapse.summary
           .small-12.columns
             = pod.summary
-        .row.collapse.stats
+        .row.collapse.stats.hide-for-small-only
           .small-3.medium-2.columns
             .key
               %i.fi-heart
@@ -68,6 +68,30 @@
               Last Commit
             .value
               = time_ago pod.last_committed_at
+        .row.collapse.stats.show-for-small-only
+          .small-6.columns.key
+            %i.fi-heart
+            Popularity
+          .small-6.columns.value
+            = (pod.score / 1000.0).round(1)
+        .row.collapse.stats.show-for-small-only
+          .small-6.columns.key
+            %i.fi-social-github
+            Contoributors
+          .small-6.columns.value
+            = pod.github_contributor_count || '-'
+        .row.collapse.stats.show-for-small-only
+          .small-6.columns.key
+            %i.fi-star
+            Stargazers
+          .small-6.columns.value
+            = pod.github_stargazer_count || '-'
+        .row.collapse.stats.show-for-small-only
+          .small-6.columns.key
+            %i.fi-clock
+            Last Commit
+          .small-6.columns.value
+            = time_ago pod.last_committed_at
       .medium-2.columns.text-center.links
         = link_to pod.documentation_url, class: 'button tiny' do
           %i.fi-page
