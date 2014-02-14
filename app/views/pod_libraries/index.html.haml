@@ -33,7 +33,7 @@
       .medium-9.columns
         .row.collapse
           .small-12.columns.title
-            %h2
+            %h3
               = link_to pod.name, pod.homepage
               %span.version
                 = pod.current_version
@@ -68,7 +68,7 @@
               Last Commit
             .value
               = time_ago pod.last_committed_at
-      .medium-2.columns.text-center
+      .medium-2.columns.text-center.links
         = link_to pod.documentation_url, class: 'button tiny' do
           %i.fi-page
           Docs
@@ -81,13 +81,13 @@
 
 .footer
   .row.collapse
-    .medium-4.columns
+    .medium-4.columns.contributors
       = link_to 'Built by @luvtechno', 'https://github.com/luvtechno'
       %br
       and
       %br
       = link_to 'contributors', 'https://github.com/luvtechno/cocoapods_search/graphs/contributors'
-    .medium-4.columns
+    .medium-4.columns.sponsor
       = link_to 'https://www.wantedly.com/' do
         Sponsored
         by

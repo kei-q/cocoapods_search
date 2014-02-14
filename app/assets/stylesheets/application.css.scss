@@ -8,7 +8,7 @@
   background: #7fdae7;
 }
 
-.search-container{
+.search-container {
   padding: 70px 0 50px;
 
   input[type="text"] {
@@ -62,7 +62,7 @@
   }
 
   .title {
-    h2 {
+    h3 {
       line-height: 1;
     }
     line-height: 1;
@@ -118,3 +118,36 @@ ul.pagination {
     text-align: left;
   }
 }
+
+@media #{$small-only} {
+  .search-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .sort-control {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .result {
+    padding: 15px 15px;
+    .rank {
+      margin-bottom: 10px;
+    }
+    .links {
+      margin-top: 20px;
+      a {
+        margin: 0;
+      }
+    }
+  }
+  ul.pagination {
+    margin: 15px;
+  }
+  .contributors {
+    margin-bottom: 20px
+  }
+  .sponsor {
+    margin-bottom: 20px
+  }
+}
+
