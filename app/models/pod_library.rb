@@ -28,7 +28,7 @@
 
 class PodLibrary < ActiveRecord::Base
   has_one :raw_datum
-  serialize :github_raw_data, Hash
+  delegate :github_raw_data, to: :raw_datum
 
   ORDER_TYPES = %w(popularity contributors stargazers last_commit).freeze
   scope :sort, ->(order_type) do
@@ -114,7 +114,6 @@ class PodLibrary < ActiveRecord::Base
       self.github_contributor_count = github_raw_data[:contributors].size
     end
 
-    # self.github_raw_data[:releases] = github_releases
     if update_releases
       self.github_raw_data[:tags] = github_tags
       self.github_raw_data[:current_release_commit] = github_current_release_commit
@@ -125,7 +124,11 @@ class PodLibrary < ActiveRecord::Base
 
     calc_score
 
-    save
+    # Clean up old data
+    self[:github_raw_data] = nil
+    self.github_raw_data[:releases] = nil
+
+    raw_datum.save && save
   rescue Octokit::NotFound => e
     logger.warn "Error: #{self.name} #{e}"
     false
