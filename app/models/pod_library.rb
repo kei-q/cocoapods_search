@@ -24,6 +24,8 @@
 #  created_at                  :datetime
 #  updated_at                  :datetime
 #  github_raw_data             :text
+#  score                       :integer
+#  recent_commit_age           :float            default(1.0)
 #
 
 class PodLibrary < ActiveRecord::Base
