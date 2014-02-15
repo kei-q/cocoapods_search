@@ -4,7 +4,7 @@
     .small-12.columns
       = form_tag root_path, method: :get do
         = hidden_field_tag 'o', @order_type
-        = text_field_tag 'q', params[:q], placeholder: 'SEARCH BY KEYWORDS'
+        = text_field_tag 'q', params[:q], placeholder: 'SEARCH'
   .row.collapse.sample
     .small-12.columns
       %span.query
