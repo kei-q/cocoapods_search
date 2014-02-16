@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214131208) do
+ActiveRecord::Schema.define(version: 20140216074048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,10 +34,8 @@ ActiveRecord::Schema.define(version: 20140214131208) do
     t.integer  "github_contributor_count",    default: 0,   null: false
     t.datetime "first_committed_at"
     t.datetime "last_committed_at"
-    t.text     "recent_commits"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "github_raw_data"
     t.integer  "score",                       default: 0,   null: false
     t.float    "recent_commit_age",           default: 1.0
   end

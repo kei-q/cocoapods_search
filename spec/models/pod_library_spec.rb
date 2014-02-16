@@ -20,10 +20,8 @@
 #  github_contributor_count    :integer          default(0), not null
 #  first_committed_at          :datetime
 #  last_committed_at           :datetime
-#  recent_commits              :text
 #  created_at                  :datetime
 #  updated_at                  :datetime
-#  github_raw_data             :text
 #  score                       :integer          default(0), not null
 #  recent_commit_age           :float            default(1.0)
 #
