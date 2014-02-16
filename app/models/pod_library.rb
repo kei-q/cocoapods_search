@@ -38,11 +38,11 @@ class PodLibrary < ActiveRecord::Base
     when 'popularity'
       order(score: :desc)
     when 'contributors'
-      where('github_contributor_count IS NOT NULL').order(github_contributor_count: :desc)
+      order(github_contributor_count: :desc)
     when 'stargazers'
-      where('github_stargazer_count IS NOT NULL').order(github_stargazer_count: :desc)
+      order(github_stargazer_count: :desc)
     when 'last_commit'
-      where('last_committed_at IS NOT NULL').order(last_committed_at: :desc)
+      order(last_committed_at: :desc)
     end
   end
 
