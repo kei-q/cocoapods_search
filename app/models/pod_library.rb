@@ -144,26 +144,6 @@ class PodLibrary < ActiveRecord::Base
     super || "http://cocoadocs.org/docsets/#{name}/#{current_version}/"
   end
 
-  def github_watcher_count
-    super || 0
-  end
-
-  def github_stargazer_count
-    super || 0
-  end
-
-  def github_fork_count
-    super || 0
-  end
-
-  def github_contributor_count
-    super || 0
-  end
-
-  def last_commit_age
-    (Time.now - (last_committed_at || 1.year.ago)) / 86400.0 / 365
-  end
-
   def calc_score
     github_score = github_watcher_count + github_stargazer_count + github_fork_count + github_contributor_count * 10
     age_factor = Math.exp(-recent_commit_age)
