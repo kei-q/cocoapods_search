@@ -40,7 +40,7 @@ class PodLibrary < ActiveRecord::Base
     when 'stargazers'
       order(github_stargazer_count: :desc)
     when 'last_commit'
-      order(last_committed_at: :desc)
+      where('last_committed_at IS NOT NULL').order(last_committed_at: :desc)
     end
   end
 
