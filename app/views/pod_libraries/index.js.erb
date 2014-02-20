@@ -1,1 +1,1 @@
-$('.results-container').html("<%= params[:q] %>")
+$('.results-container').html("<%= escape_javascript render('results', pods: @pods, order_type: @order_type) %>")
