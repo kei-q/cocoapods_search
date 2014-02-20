@@ -30,14 +30,14 @@ class PodLibrary < ActiveRecord::Base
   has_one :raw_datum
   delegate :github_raw_data, to: :raw_datum
 
-  ORDER_TYPES = %w(popularity contributors stargazers last_commit).freeze
+  ORDER_TYPES = %w(popularity contributors stars last_commit).freeze
   scope :sort, ->(order_type) do
     case order_type
     when 'popularity'
       order(score: :desc)
     when 'contributors'
       order(github_contributor_count: :desc)
-    when 'stargazers'
+    when 'stars'
       order(github_stargazer_count: :desc)
     when 'last_commit'
       where('last_committed_at IS NOT NULL').order(last_committed_at: :desc)
