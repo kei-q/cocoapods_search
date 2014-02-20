@@ -9,6 +9,11 @@ class PodLibrariesController < ApplicationController
     @order_type = params[:o] || 'popularity'
     pods_scope = pods_scope.sort(@order_type)
     @pods = pods_scope.page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private
