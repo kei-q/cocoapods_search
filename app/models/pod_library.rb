@@ -156,6 +156,12 @@ class PodLibrary < ActiveRecord::Base
     false
   end
 
+  def fetch_github_data
+    self.update_github_repo_data(fetch_repo_stats: true, fetch_commit_activities: true, fetch_contributors: true)
+    self.github_data_fetched_at = Time.now
+    save
+  end
+
   def spec_url
     "https://github.com/CocoaPods/Specs/blob/master/#{name}/#{current_version}/#{name}.podspec"
   end
