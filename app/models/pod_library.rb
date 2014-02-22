@@ -129,7 +129,7 @@ class PodLibrary < ActiveRecord::Base
     end
   end
 
-  def fetch_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
+  def update_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
     return false unless github?
 
     update_github_repo_stats(fetch: update_repo)
@@ -194,6 +194,6 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def update_current_version_released_at
-    fetch_github_repo_data(update_releases: true)
+    update_github_repo_data(update_releases: true)
   end
 end
