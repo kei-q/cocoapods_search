@@ -129,13 +129,13 @@ class PodLibrary < ActiveRecord::Base
     end
   end
 
-  def update_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
+  def update_github_repo_data(fetch_repo_stats: false, fetch_commit_activities: false, fetch_contributors: false, fetch_releases: false)
     return false unless github?
 
-    update_github_repo_stats(fetch: update_repo)
-    update_github_commit_activities(fetch: update_commits)
-    update_github_contributors(fetch: update_contributors)
-    update_github_releases(fetch: update_releases)
+    update_github_repo_stats(fetch: fetch_repo_stats)
+    update_github_commit_activities(fetch: fetch_commit_activities)
+    update_github_contributors(fetch: fetch_contributors)
+    update_github_releases(fetch: fetch_releases)
 
     calc_score
 
@@ -194,6 +194,6 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def update_current_version_released_at
-    update_github_repo_data(update_releases: true)
+    update_github_repo_data(fetch_releases: true)
   end
 end
