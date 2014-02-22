@@ -142,6 +142,7 @@ class PodLibrary < ActiveRecord::Base
   def update_github_repo_data(save: false, fetch_repo_stats: false, fetch_commit_activities: false, fetch_contributors: false, fetch_releases: false)
     return false unless github?
 
+    self.build_raw_datum if raw_datum.nil?
     update_github_repo_stats(fetch: fetch_repo_stats)
     update_github_commit_activities(fetch: fetch_commit_activities)
     update_github_contributors(fetch: fetch_contributors)
