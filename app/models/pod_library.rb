@@ -49,6 +49,8 @@ class PodLibrary < ActiveRecord::Base
     where("name ILIKE :query OR summary ILIKE :query OR description ILIKE :query", query: query)
   end
 
+  after_save :update_current_version_released_at, if: -> { git_tag_changed? }
+
   def self.github_client
     @client ||= Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
   end
@@ -176,5 +178,9 @@ class PodLibrary < ActiveRecord::Base
     `gunzip -f ./tmp/specs.tar.gz`
     `cd tmp; tar xvf specs.tar`
     `mv -f ./tmp/CocoaPods-Specs-* ./tmp/specs`
+  end
+
+  def update_current_version_released_at
+    fetch_github_repo_data(update_releases: true)
   end
 end
