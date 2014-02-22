@@ -24,6 +24,7 @@
 #  updated_at                  :datetime
 #  score                       :integer          default(0), not null
 #  recent_commit_age           :float            default(1.0)
+#  github_data_fetched_at      :datetime
 #
 
 class PodLibrary < ActiveRecord::Base
@@ -50,6 +51,7 @@ class PodLibrary < ActiveRecord::Base
   end
 
   before_save :update_current_version_released_at, if: -> { git_tag_changed? }
+  before_create :set_github_data_fetched_at
 
   def self.github_client
     @client ||= Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
@@ -156,6 +158,20 @@ class PodLibrary < ActiveRecord::Base
     false
   end
 
+  def fetch_github_data
+    self.update_github_repo_data(fetch_repo_stats: true, fetch_commit_activities: true, fetch_contributors: true)
+    self.github_data_fetched_at = Time.now
+    save
+  end
+
+  def self.fetch_all_github_data(limit: 1000)
+    PodLibrary.order(:github_data_fetched_at).first(limit).each do |pod|
+      logger.info "Fetching GitHub data for #{pod.name}"
+      success = pod.fetch_github_data
+      logger.error "Failed #{pod.name}" unless success
+    end
+  end
+
   def spec_url
     "https://github.com/CocoaPods/Specs/blob/master/#{name}/#{current_version}/#{name}.podspec"
   end
@@ -203,5 +219,9 @@ class PodLibrary < ActiveRecord::Base
 
   def update_current_version_released_at
     update_github_repo_data(fetch_releases: true)
+  end
+
+  def set_github_data_fetched_at
+    self.github_data_fetched_at ||= 1.year.ago
   end
 end
