@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216074048) do
+ActiveRecord::Schema.define(version: 20140222093044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,11 @@ ActiveRecord::Schema.define(version: 20140216074048) do
     t.datetime "updated_at"
     t.integer  "score",                       default: 0,   null: false
     t.float    "recent_commit_age",           default: 1.0
+    t.datetime "github_data_fetched_at"
   end
 
   add_index "pod_libraries", ["github_contributor_count"], name: "index_pod_libraries_on_github_contributor_count", using: :btree
+  add_index "pod_libraries", ["github_data_fetched_at"], name: "index_pod_libraries_on_github_data_fetched_at", using: :btree
   add_index "pod_libraries", ["github_stargazer_count"], name: "index_pod_libraries_on_github_stargazer_count", using: :btree
   add_index "pod_libraries", ["last_committed_at"], name: "index_pod_libraries_on_last_committed_at", using: :btree
   add_index "pod_libraries", ["score"], name: "index_pod_libraries_on_score", using: :btree
