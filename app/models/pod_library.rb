@@ -150,7 +150,7 @@ class PodLibrary < ActiveRecord::Base
     # Clean up old data
     self.github_raw_data[:releases] = nil
 
-    save ? (raw_datum.save && save) : true
+    save ? (raw_datum.save && self.save) : true
   rescue Octokit::NotFound => e
     logger.warn "Error: #{self.name} #{e}"
     false
