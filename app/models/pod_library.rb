@@ -137,7 +137,7 @@ class PodLibrary < ActiveRecord::Base
     end
   end
 
-  def update_github_repo_data(fetch_repo_stats: false, fetch_commit_activities: false, fetch_contributors: false, fetch_releases: false)
+  def update_github_repo_data(save: false, fetch_repo_stats: false, fetch_commit_activities: false, fetch_contributors: false, fetch_releases: false)
     return false unless github?
 
     update_github_repo_stats(fetch: fetch_repo_stats)
@@ -150,7 +150,7 @@ class PodLibrary < ActiveRecord::Base
     # Clean up old data
     self.github_raw_data[:releases] = nil
 
-    raw_datum.save && save
+    save ? (raw_datum.save && save) : true
   rescue Octokit::NotFound => e
     logger.warn "Error: #{self.name} #{e}"
     false
