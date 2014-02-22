@@ -5,10 +5,14 @@
       - PodLibrary::ORDER_TYPES.each do |type|
         - if type == order_type
           %dd.active
-            %a= type.titlecase
+            %a
+              %i{ class: icon_class(type) }
+              = type.titlecase
         - else
           %dd
-            = link_to type.titlecase, url_for(o: type, q: params[:q])
+            = link_to url_for(o: type, q: params[:q]) do
+              %i{ class: icon_class(type) }
+              = type.titlecase
 - pods.each.with_index(1 + pods.offset_value) do |pod, rank|
   .row.collapse.result
     .medium-1.column.rank
