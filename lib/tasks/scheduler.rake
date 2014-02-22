@@ -53,3 +53,8 @@ task :update_commit_contributors => :environment do |t|
     puts "Failed #{pod.name}" unless success
   end
 end
+
+desc "Round-robin update GitHub data"
+task :update_github_data => :environment do |t|
+  PodLibrary.fetch_all_github_data
+end
