@@ -56,7 +56,7 @@ end
 
 desc "Round-robin update GitHub data"
 task :update_github_data => :environment do |t|
-  PodLibrary.fetch_all_github_data
+  PodLibrary.fetch_all_github_data(limit: 100)
 end
 
 desc "Update GitHub data of top 20 popular pods"
