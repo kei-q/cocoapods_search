@@ -49,7 +49,7 @@ class PodLibrary < ActiveRecord::Base
     where("name ILIKE :query OR summary ILIKE :query OR description ILIKE :query", query: query)
   end
 
-  after_save :update_current_version_released_at, if: -> { git_tag_changed? }
+  before_save :update_current_version_released_at, if: -> { git_tag_changed? }
 
   def self.github_client
     @client ||= Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
@@ -194,6 +194,6 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def update_current_version_released_at
-    update_github_repo_data(fetch_releases: true)
+    update_github_releases(fetch: fetch_releases)
   end
 end
