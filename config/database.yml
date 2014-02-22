@@ -17,3 +17,6 @@ development:
 test:
   <<: *default
   database: cocoapods_search_test
+
+production:
+  adapter: postgresql
