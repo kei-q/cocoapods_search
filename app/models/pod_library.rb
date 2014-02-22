@@ -162,6 +162,14 @@ class PodLibrary < ActiveRecord::Base
     save
   end
 
+  def self.fetch_all_github_data(limit: 1000)
+    PodLibrary.order(:github_data_fetched_at).first(limit).each do |pod|
+      logger.info "Fetching GitHub data for #{pod.name}"
+      success = pod.fetch_github_data
+      logger.error "Failed #{pod.name}" unless success
+    end
+  end
+
   def spec_url
     "https://github.com/CocoaPods/Specs/blob/master/#{name}/#{current_version}/#{name}.podspec"
   end
