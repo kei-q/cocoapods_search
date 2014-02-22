@@ -94,35 +94,48 @@ class PodLibrary < ActiveRecord::Base
     @current_release_commit ||= self.class.github_client.commit(github_repo_name, github_current_release_commit_sha)
   end
 
-  def fetch_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
-    return false unless github?
-
-    self.github_raw_data[:repo] = github_repo if update_repo
+  def update_github_repo_stats(fetch: false)
+    self.github_raw_data[:repo] = github_repo if fetch
     if github_raw_data[:repo]
       self.github_watcher_count = github_raw_data[:repo].attrs[:subscribers_count]
       self.github_stargazer_count = github_raw_data[:repo].attrs[:stargazers_count]
       self.github_fork_count = github_raw_data[:repo].attrs[:forks_count]
     end
+  end
 
-    self.github_raw_data[:commits] = github_commits if update_commits
+  def update_github_commit_activities(fetch: false)
+    self.github_raw_data[:commits] = github_commits if fetch
     if github_raw_data[:commits]
       self.last_committed_at = github_raw_data[:commits].first.attrs[:commit].attrs[:committer].attrs[:date]
       dates = github_raw_data[:commits].map { |commit| commit.attrs[:commit].attrs[:committer].attrs[:date] }
       self.recent_commit_age = dates.map { |date| Time.now - date.to_time }.sum.to_f / dates.size / 86400 / 365
     end
+  end
 
-    self.github_raw_data[:contributors] = github_contributors if update_contributors
+  def update_github_contributors(fetch: false)
+    self.github_raw_data[:contributors] = github_contributors if fetch
     if github_raw_data[:contributors]
       self.github_contributor_count = github_raw_data[:contributors].size
     end
+  end
 
-    if update_releases
+  def update_github_releases(fetch: false)
+    if fetch
       self.github_raw_data[:tags] = github_tags
       self.github_raw_data[:current_release_commit] = github_current_release_commit
     end
     if github_raw_data[:current_release_commit]
       self.current_version_released_at = github_raw_data[:current_release_commit].attrs[:commit].attrs[:committer].attrs[:date]
     end
+  end
+
+  def fetch_github_repo_data(update_repo: false, update_commits: false, update_contributors: false, update_releases: false)
+    return false unless github?
+
+    update_github_repo_stats(fetch: update_repo)
+    update_github_commit_activities(fetch: update_commits)
+    update_github_contributors(fetch: update_contributors)
+    update_github_releases(fetch: update_releases)
 
     calc_score
 
