@@ -26,3 +26,30 @@ task :reload_cocoapods_specs => :environment do |t|
     pod.save!
   end
 end
+
+desc "Update repository stats"
+task :update_repository_stats => :environment do |t|
+  PodLibrary.find_each do |pod|
+    puts "Checking #{pod.name}"
+    success = pod.fetch_github_repo_data(update_repo: true)
+    puts "Failed #{pod.name}" unless success
+  end
+end
+
+desc "Update commit activities"
+task :update_commit_activities => :environment do |t|
+  PodLibrary.find_each do |pod|
+    puts "Checking #{pod.name}"
+    success = pod.fetch_github_repo_data(update_commits: true)
+    puts "Failed #{pod.name}" unless success
+  end
+end
+
+desc "Update commit contributors"
+task :update_commit_contributors => :environment do |t|
+  PodLibrary.find_each do |pod|
+    puts "Checking #{pod.name}"
+    success = pod.fetch_github_repo_data(update_contributors: true)
+    puts "Failed #{pod.name}" unless success
+  end
+end
