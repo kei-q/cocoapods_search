@@ -95,6 +95,8 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def update_github_repo_stats(fetch: false)
+    return false unless github?
+
     self.github_raw_data[:repo] = github_repo if fetch
     if github_raw_data[:repo]
       self.github_watcher_count = github_raw_data[:repo].attrs[:subscribers_count]
@@ -104,6 +106,8 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def update_github_commit_activities(fetch: false)
+    return false unless github?
+
     self.github_raw_data[:commits] = github_commits if fetch
     if github_raw_data[:commits]
       self.last_committed_at = github_raw_data[:commits].first.attrs[:commit].attrs[:committer].attrs[:date]
@@ -113,6 +117,8 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def update_github_contributors(fetch: false)
+    return false unless github?
+
     self.github_raw_data[:contributors] = github_contributors if fetch
     if github_raw_data[:contributors]
       self.github_contributor_count = github_raw_data[:contributors].size
@@ -120,6 +126,8 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def update_github_releases(fetch: false)
+    return false unless github?
+
     if fetch
       self.github_raw_data[:tags] = github_tags
       self.github_raw_data[:current_release_commit] = github_current_release_commit
