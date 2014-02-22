@@ -50,6 +50,7 @@ class PodLibrary < ActiveRecord::Base
   end
 
   before_save :update_current_version_released_at, if: -> { git_tag_changed? }
+  before_create :set_github_data_fetched_at
 
   def self.github_client
     @client ||= Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
@@ -217,5 +218,9 @@ class PodLibrary < ActiveRecord::Base
 
   def update_current_version_released_at
     update_github_repo_data(fetch_releases: true)
+  end
+
+  def set_github_data_fetched_at
+    self.github_data_fetched_at ||= 1.year.ago
   end
 end
