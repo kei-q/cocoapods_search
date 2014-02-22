@@ -125,7 +125,6 @@ class PodLibrary < ActiveRecord::Base
     calc_score
 
     # Clean up old data
-    self[:github_raw_data] = nil
     self.github_raw_data[:releases] = nil
 
     raw_datum.save && save
