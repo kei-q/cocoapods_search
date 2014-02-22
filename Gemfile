@@ -27,21 +27,6 @@ gem 'jbuilder', '~> 1.2'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc',          group: :doc, require: false
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
-gem 'spring',        group: :development
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 gem 'haml-rails'
 
 gem 'foundation-rails'
@@ -60,6 +45,9 @@ gem 'compass-rails', '~> 1.1.3'
 gem 'newrelic_rpm'
 
 group :development, :test do
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
+  gem 'spring'
+
   gem 'thin'
   gem 'pry-nav'
   gem 'pry-doc'
@@ -83,4 +71,3 @@ group :production do
   gem 'execjs'
   gem 'rails_12factor'
 end
-
