@@ -202,6 +202,6 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def update_current_version_released_at
-    update_github_releases(fetch: fetch_releases)
+    update_github_repo_data(fetch_releases: true)
   end
 end
