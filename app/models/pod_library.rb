@@ -187,6 +187,10 @@ class PodLibrary < ActiveRecord::Base
     self.score = github_score * age_factor
   end
 
+  def popularity
+    (score / 1000.0).round(1)
+  end
+
   def self.sets
     @sets ||= Pod::Source.new(path).pod_sets
   end
