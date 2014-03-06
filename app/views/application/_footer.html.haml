@@ -1,0 +1,22 @@
+.footer
+  .row.collapse
+    .medium-4.columns.contributors
+      = link_to 'Built by @luvtechno', 'https://github.com/luvtechno'
+      %br
+      and
+      %br
+      = link_to 'contributors', 'https://github.com/luvtechno/cocoapods_search/graphs/contributors'
+    .medium-4.columns.sponsor
+      = link_to 'https://www.wantedly.com/' do
+        Sponsored
+        by
+        Wantedly, Inc.
+        .logo
+          = image_tag 'wantedly.png'
+    .medium-4.columns
+      .github-buttons
+        %iframe{ src: "http://ghbtns.com/github-btn.html?user=luvtechno&type=follow&count=true",
+    allowtransparency: "true", frameborder: "0", scrolling: "0", width: "165", height: "20" }
+        %br
+        %iframe{ src: "http://ghbtns.com/github-btn.html?user=luvtechno&repo=cocoapods_search&type=watch&count=true",
+    allowtransparency: "true", frameborder: "0", scrolling: "0", width: "115", height: "20" }

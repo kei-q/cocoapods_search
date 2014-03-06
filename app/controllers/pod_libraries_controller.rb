@@ -17,6 +17,7 @@ class PodLibrariesController < ApplicationController
   end
 
   def show
+    @page_title = @pod_library.name
     respond_to do |format|
       format.html
       format.json

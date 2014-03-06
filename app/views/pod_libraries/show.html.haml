@@ -1,6 +1,2 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_pod_library_path(@pod_library)
-\|
-= link_to 'Back', pod_libraries_path
+.results-container
+  = render 'pod', pod: @pod_library

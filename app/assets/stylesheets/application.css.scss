@@ -24,7 +24,7 @@
 }
 
 .results-container{
-	padding: 30px 0 0 0;
+	padding: 30px 0 30px 0;
   background-color: lighten(#66c8d6, 20%);
 
 }
@@ -59,6 +59,10 @@
     border: solid 1px $blue1;
     color: $blue1;
     text-align: center;
+    &:hover {
+      background-color: $blue1;
+      color: white;
+    }
   }
 
   .title {
