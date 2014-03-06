@@ -18,7 +18,7 @@ $ ->
     query = $(@).val()
     params = getParams()
     $.ajax
-      url: '/pod_libraries'
+      url: '/pods'
       data:
         q: query
         o: params['o']

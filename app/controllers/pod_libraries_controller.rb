@@ -16,10 +16,17 @@ class PodLibrariesController < ApplicationController
     end
   end
 
+  def show
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pod_library
-      @pod_library = PodLibrary.find(params[:id])
+      @pod_library = PodLibrary.where(name: params[:id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
