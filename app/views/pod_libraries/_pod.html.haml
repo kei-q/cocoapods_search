@@ -1,8 +1,9 @@
 - rank ||= pod.rank
 .row.collapse.result
   .medium-1.column.rank
-    .rank-number
-      = rank
+    = link_to pod_path(pod.name) do
+      .rank-number
+        = rank
   .medium-9.columns
     .row.collapse
       .small-12.columns.title
