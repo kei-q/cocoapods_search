@@ -96,6 +96,10 @@ class PodLibrary < ActiveRecord::Base
     @current_release_commit ||= self.class.github_client.commit(github_repo_name, github_current_release_commit_sha)
   end
 
+  def github_participation_stats
+    @participation_stats ||= self.class.github_client.participation_stats(github_repo_name)
+  end
+
   def update_github_repo_stats(fetch: false)
     return false unless github?
 
@@ -139,7 +143,15 @@ class PodLibrary < ActiveRecord::Base
     end
   end
 
-  def update_github_repo_data(save: false, fetch_repo_stats: false, fetch_commit_activities: false, fetch_contributors: false, fetch_releases: false)
+  def update_github_participation_stats(fetch: false)
+    return false unless github?
+
+    if fetch
+      self.github_raw_data[:participation] = github_participation_stats
+    end
+  end
+
+  def update_github_repo_data(save: false, fetch_repo_stats: false, fetch_commit_activities: false, fetch_contributors: false, fetch_releases: false, fetch_participation_stats: false)
     return false unless github?
 
     self.build_raw_datum if raw_datum.nil?
@@ -147,6 +159,7 @@ class PodLibrary < ActiveRecord::Base
     update_github_commit_activities(fetch: fetch_commit_activities)
     update_github_contributors(fetch: fetch_contributors)
     update_github_releases(fetch: fetch_releases)
+    update_github_participation_stats(fetch: fetch_participation_stats)
 
     calc_score
 
