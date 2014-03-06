@@ -191,6 +191,15 @@ class PodLibrary < ActiveRecord::Base
     (score / 1000.0).round(1)
   end
 
+  def rank
+    @rank ||= calc_rank
+  end
+
+  def calc_rank
+    sql = "SELECT rank FROM (SELECT id, RANK() OVER (ORDER BY score DESC) AS rank FROM #{PodLibrary.table_name}) ranks WHERE ranks.id = #{id}"
+    ActiveRecord::Base.connection.execute(sql).values.first.first.to_i
+  end
+
   def self.sets
     @sets ||= Pod::Source.new(path).pod_sets
   end
