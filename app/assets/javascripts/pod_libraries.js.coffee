@@ -23,3 +23,5 @@ $ ->
         q: query
         o: params['o']
       dataType: 'script'
+    $('#results').hide()
+    $('#loading').show()

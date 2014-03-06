@@ -151,3 +151,14 @@ ul.pagination {
   }
 }
 
+#loading {
+  display: none;
+  text-align: center;
+  padding-bottom: 40px;
+  img {
+    padding: 10px;
+    border: solid 1px $layout-light-border;
+    @include border-radius(5px);
+    background-color: white;
+  }
+}
