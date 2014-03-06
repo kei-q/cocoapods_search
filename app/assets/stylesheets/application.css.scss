@@ -59,6 +59,10 @@
     border: solid 1px $blue1;
     color: $blue1;
     text-align: center;
+
+    transition-property: background, color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
     &:hover {
       background-color: $blue1;
       color: white;
