@@ -1,0 +1,74 @@
+- rank ||= pod.rank
+.row.collapse.result
+  .medium-1.column.rank
+    .rank-number
+      = rank
+  .medium-9.columns
+    .row.collapse
+      .small-12.columns.title
+        %h3
+          = link_to pod.name, pod.homepage
+          %span.version
+            = pod.current_version
+          %span.date
+            released:
+            = time_ago pod.current_version_released_at
+    .row.collapse.summary
+      .small-12.columns
+        = pod.summary
+    .row.collapse.stats.hide-for-small-only
+      .small-3.medium-2.columns
+        .key
+          %i.fi-heart
+          Popularity
+        .value
+          = (pod.score / 1000.0).round(1)
+      .small-3.medium-2.columns
+        .key
+          %i.fi-social-github
+          Contoributors
+        .value
+          = pod.github_contributor_count || '-'
+      .small-3.medium-2.columns
+        .key
+          %i.fi-star
+          Stars
+        .value
+          = pod.github_stargazer_count || '-'
+      .small-3.medium-6.columns
+        .key
+          %i.fi-clock
+          Last Commit
+        .value
+          = time_ago pod.last_committed_at
+    .row.collapse.stats.show-for-small-only
+      .small-6.columns.key
+        %i.fi-heart
+        Popularity
+      .small-6.columns.value
+        = pod.popularity
+    .row.collapse.stats.show-for-small-only
+      .small-6.columns.key
+        %i.fi-social-github
+        Contoributors
+      .small-6.columns.value
+        = pod.github_contributor_count || '-'
+    .row.collapse.stats.show-for-small-only
+      .small-6.columns.key
+        %i.fi-star
+        Stargazers
+      .small-6.columns.value
+        = pod.github_stargazer_count || '-'
+    .row.collapse.stats.show-for-small-only
+      .small-6.columns.key
+        %i.fi-clock
+        Last Commit
+      .small-6.columns.value
+        = time_ago pod.last_committed_at
+  .medium-2.columns.text-center.links
+    = link_to pod.documentation_url, class: 'button tiny' do
+      %i.fi-page
+      Docs
+    = link_to pod.spec_url, class: 'button tiny' do
+      %i.fi-widget
+      Spec
