@@ -173,7 +173,7 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def fetch_github_data
-    self.update_github_repo_data(fetch_repo_stats: true, fetch_commit_activities: true, fetch_contributors: true)
+    self.update_github_repo_data(fetch_repo_stats: true, fetch_commit_activities: true, fetch_contributors: true, fetch_participation_stats: true)
     self.github_data_fetched_at = Time.now
     save
   end
