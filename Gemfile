@@ -40,7 +40,7 @@ gem 'kaminari'
 
 gem 'pry-rails'
 
-gem 'compass-rails', '~> 1.1.3'
+gem 'compass-rails'
 
 gem 'newrelic_rpm'
 
