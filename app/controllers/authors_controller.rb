@@ -10,6 +10,16 @@ class AuthorsController < ApplicationController
   # GET /authors/1
   # GET /authors/1.json
   def show
+    pods_scope = @author.pods
+    @order_type = params[:o] || 'popularity'
+    pods_scope = pods_scope.sort(@order_type)
+    @pods = pods_scope.page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.js
+      format.json
+    end
   end
 
   # GET /authors/new
@@ -64,7 +74,7 @@ class AuthorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_author
-      @author = Author.find(params[:id])
+      @author = Author.where(name: params[:id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

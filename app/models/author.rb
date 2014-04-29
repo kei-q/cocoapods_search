@@ -12,4 +12,8 @@
 class Author < ActiveRecord::Base
   has_many :authorings
   has_many :pods, through: :authorings, source: :pod
+
+  def to_param
+    name.to_param
+  end
 end

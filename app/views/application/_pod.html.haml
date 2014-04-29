@@ -2,7 +2,7 @@
 - show_detail ||= false
 .row.collapse.result
   .medium-1.column.rank
-    = link_to pod_path(pod.name) do
+    = link_to pod_path(pod) do
       .rank-number
         = rank
   .medium-8.columns
@@ -71,16 +71,25 @@
         Last Commit
       .small-6.columns.value
         = time_ago pod.last_committed_at
-  .medium-3.columns.text-center.links
-    = link_to pod.documentation_url, class: 'button tiny' do
-      %i.fi-page
-      Docs
-    = link_to pod.spec_url, class: 'button tiny' do
-      %i.fi-widget
-      Spec
-    = link_to pod.github_url, class: 'button tiny' do
-      %i.fi-social-github
-      GitHub
-    = link_to "https://github.com/search?l=&q=#{pod.name}+path%3APodfile&type=Code", class: 'button tiny' do
-      %i.fi-magnifying-glass
-      Samples
+  .medium-3.columns.text-center
+    .row.collapse.links
+      .small-12.columns
+        = link_to pod.documentation_url, class: 'button tiny' do
+          %i.fi-page
+          Docs
+        = link_to pod.spec_url, class: 'button tiny' do
+          %i.fi-widget
+          Spec
+        = link_to pod.github_url, class: 'button tiny' do
+          %i.fi-social-github
+          GitHub
+        = link_to "https://github.com/search?l=&q=#{pod.name}+path%3APodfile&type=Code", class: 'button tiny' do
+          %i.fi-magnifying-glass
+          Samples
+    .row.collapse.authors
+      .small-12.columns
+        Author(s)
+        %ul
+          - pod.authors.each_with_index do |author, i|
+            %li
+              = link_to author.name, author_path(author)

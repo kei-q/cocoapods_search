@@ -39,6 +39,11 @@
   }
 }
 
+.author-header {
+  font-weight: 100;
+  color: $gray1;
+}
+
 .result{
   background-color: white;
   padding: 15px 5px;
@@ -83,6 +88,22 @@
       font-size: 70%;
     }
   }
+  .authors {
+    padding: 15px 0 0;
+    color: $gray1;
+    font-size: 80%;
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      margin: 0;
+      padding: 0;
+      font-size: 80%;
+      list-style-type: none;
+    }
+  }
+
   .summary {
     padding-bottom: 20px;
     color: $gray2;
