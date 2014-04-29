@@ -207,7 +207,7 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def popularity
-    (score / 1000.0).round(1)
+    (score / 100.0).round(1)
   end
 
   def rank
