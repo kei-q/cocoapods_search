@@ -1,4 +1,5 @@
 - rank ||= pod.rank
+- show_detail ||= false
 .row.collapse.result
   .medium-1.column.rank
     = link_to pod_path(pod.name) do
@@ -17,6 +18,10 @@
     .row.collapse.summary
       .small-12.columns
         = pod.summary
+    - if show_detail && pod.description
+      .row.collapse.description
+        .small-12.columns
+          = pod.description
     .row.collapse.stats.hide-for-small-only
       .small-3.medium-2.columns
         .key
