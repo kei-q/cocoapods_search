@@ -4,7 +4,7 @@
     = link_to pod_path(pod.name) do
       .rank-number
         = rank
-  .medium-9.columns
+  .medium-8.columns
     .row.collapse
       .small-12.columns.title
         %h3
@@ -66,10 +66,13 @@
         Last Commit
       .small-6.columns.value
         = time_ago pod.last_committed_at
-  .medium-2.columns.text-center.links
+  .medium-3.columns.text-center.links
     = link_to pod.documentation_url, class: 'button tiny' do
       %i.fi-page
       Docs
     = link_to pod.spec_url, class: 'button tiny' do
       %i.fi-widget
       Spec
+    = link_to "https://github.com/search?l=&q=#{pod.name}+path%3APodfile&type=Code", class: 'button tiny' do
+      %i.fi-social-github
+      Samples
