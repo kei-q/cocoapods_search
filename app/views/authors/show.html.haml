@@ -1,6 +1,7 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_author_path(@author)
-\|
-= link_to 'Back', authors_path
+.search-container
+  .row.collapse
+    .small-12.columns
+      %h1.author-header
+        Pods by #{@author.name}
+.results-container
+  = render 'results', pods: @pods, order_type: @order_type
