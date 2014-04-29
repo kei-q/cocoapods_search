@@ -23,6 +23,9 @@ task :reload_cocoapods_specs => :environment do |t|
       pod.git_source = spec.git_repo
       pod.git_tag = spec.git_tag
     end
+
+    authors = spec.authors.map { |name, email| Author.where(name: name, email: email).first_or_initialize }
+    pod.authors = authors
     pod.save!
   end
 end
