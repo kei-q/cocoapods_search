@@ -219,6 +219,10 @@ class PodLibrary < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql).values.first.first.to_i
   end
 
+  def to_param
+    name.to_param
+  end
+
   def self.sets
     @sets ||= Pod::Source.new(path).pod_sets
   end
