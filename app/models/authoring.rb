@@ -10,4 +10,6 @@
 #
 
 class Authoring < ActiveRecord::Base
+  belongs_to :pod, class_name: 'PodLibrary', foreign_key: :pod_id
+  belongs_to :author
 end

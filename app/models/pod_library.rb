@@ -28,6 +28,8 @@
 #
 
 class PodLibrary < ActiveRecord::Base
+  has_many :authorings, foreign_key: :pod_id
+  has_many :authors, through: :authorings
   has_one :raw_datum
   delegate :github_raw_data, to: :raw_datum
 
