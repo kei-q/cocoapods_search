@@ -66,6 +66,10 @@ class PodLibrary < ActiveRecord::Base
     "#{match_data[1]}/#{match_data[2]}"
   end
 
+  def github_url
+    github? ? "https://github.com/#{github_repo_name}" : '#'
+  end
+
   def github_repo
     @repo ||= self.class.github_client.repo(github_repo_name)
   end

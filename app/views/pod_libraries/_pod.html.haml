@@ -73,6 +73,9 @@
     = link_to pod.spec_url, class: 'button tiny' do
       %i.fi-widget
       Spec
-    = link_to "https://github.com/search?l=&q=#{pod.name}+path%3APodfile&type=Code", class: 'button tiny' do
+    = link_to pod.github_url, class: 'button tiny' do
       %i.fi-social-github
+      GitHub
+    = link_to "https://github.com/search?l=&q=#{pod.name}+path%3APodfile&type=Code", class: 'button tiny' do
+      %i.fi-magnifying-glass
       Samples
