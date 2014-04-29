@@ -10,6 +10,8 @@ class AuthorsController < ApplicationController
   # GET /authors/1
   # GET /authors/1.json
   def show
+    @page_title = "Pods by #{@author.name}"
+
     pods_scope = @author.pods
     @order_type = params[:o] || 'popularity'
     pods_scope = pods_scope.sort(@order_type)

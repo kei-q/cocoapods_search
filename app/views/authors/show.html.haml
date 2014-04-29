@@ -2,6 +2,6 @@
   .row.collapse
     .small-12.columns
       %h1.author-header
-        Pods by #{@author.name}
+        = title
 .results-container
   = render 'results', pods: @pods, order_type: @order_type
