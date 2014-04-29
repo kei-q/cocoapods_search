@@ -13,6 +13,7 @@ class PodLibrariesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.json
     end
   end
 
