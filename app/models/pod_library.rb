@@ -193,7 +193,7 @@ class PodLibrary < ActiveRecord::Base
   end
 
   def spec_url
-    "https://github.com/CocoaPods/Specs/blob/master/#{name}/#{current_version}/#{name}.podspec"
+    "https://github.com/CocoaPods/Specs/blob/master/Specs/#{name}/#{current_version}/#{name}.podspec.json"
   end
 
   def documentation_url
